@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Syne', sans-serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-luxury: 'Cinzel', serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #060911;
+    color: #e2e8f0;
+  }
+}
+
+.font-display {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-luxury {
+  font-family: 'Cinzel', serif;
+}
+
+.font-mono-spec {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Midnight Black & Electric Blue atmospheric styles */
+.bg-midnight-grid {
+  background-color: #060911;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 55%),
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 36px 36px, 36px 36px;
+}
+
+.bg-radial-blue-glow {
+  background: radial-gradient(circle at center, rgba(37, 99, 235, 0.18) 0%, rgba(6, 9, 17, 0) 70%);
+}
+
+.glow-blue {
+  box-shadow: 0 0 35px -5px rgba(37, 99, 235, 0.35);
+}
+
+.glow-blue-subtle {
+  box-shadow: 0 0 25px -5px rgba(56, 189, 248, 0.15);
+}
+
+.border-blue-glass {
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #060911;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}

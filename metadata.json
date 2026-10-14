@@ -1,0 +1,6 @@
+{
+  "name": "MIDNIGHT MOTORS — Curated Hypercars, Supercars & Exotic Classics",
+  "description": "An ultra-exclusive showroom and automotive sanctuary showcasing rare hypercars, iconic classic cars, bespoke track machinery, and luxury motorcycle collections.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
