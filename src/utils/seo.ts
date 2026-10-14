@@ -1,6 +1,15 @@
 import { BlogArticle } from '../types/blog';
 
 export function updateSEO(article?: BlogArticle) {
+  // Ensure Google Search Console verification meta tag is always present
+  let verificationMeta = document.querySelector('meta[name="google-site-verification"]');
+  if (!verificationMeta) {
+    verificationMeta = document.createElement('meta');
+    verificationMeta.setAttribute('name', 'google-site-verification');
+    verificationMeta.setAttribute('content', 'EZG_-PUQRTMA7qk4757g1WrZeDqRlbA_5Fs4xZ0wvXw');
+    document.head.prepend(verificationMeta);
+  }
+
   if (article) {
     document.title = `${article.seoTitle} | MIDNIGHT MOTORS`;
 
