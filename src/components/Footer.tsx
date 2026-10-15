@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Gauge, ArrowRight, Check, Shield, Flame, Car, Bike, Sparkles } from 'lucide-react';
+import { Gauge, ArrowRight, Check, Shield, Car, Bike, Sparkles } from 'lucide-react';
 import { BlogArticle } from '../types/blog';
 
 interface FooterProps {
@@ -9,7 +9,6 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({
-  articles,
   onSelectArticle,
   onSelectCategory
 }) => {
@@ -39,7 +38,7 @@ export const Footer: React.FC<FooterProps> = ({
               </span>
             </div>
             <p className="text-sm text-slate-300 max-w-lg leading-relaxed">
-              An independent automotive publication and digital sanctuary celebrating the apex of internal combustion, aerodynamic physics, analog driving heritage, and high-performance engineering across cars and motorcycles.
+              An independent private hypercars showroom and digital sanctuary celebrating the apex of internal combustion, aerodynamic physics, analog driving heritage, and high-performance engineering across exotic supercars and luxury motorcycles.
             </p>
             <div className="flex items-center gap-3 text-[11px] font-mono-spec text-blue-400">
               <span className="flex items-center gap-1">
@@ -96,61 +95,101 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Directory Links Matrix */}
+        {/* Directory Links Matrix with Keyword-Rich Descriptive Anchor Text */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-12 border-b border-blue-950">
-          {/* Column 1: Core Topics */}
+          {/* Column 1: Core Articles with Exact Descriptive Anchor Text */}
           <div>
             <h5 className="font-mono-spec text-xs uppercase tracking-widest text-blue-400 font-bold mb-3.5">
-              Flagship Editorials
+              Cornerstone Editorials
             </h5>
-            <ul className="space-y-2 text-xs">
-              {articles.slice(0, 5).map(art => (
-                <li key={art.id}>
-                  <button
-                    onClick={() => onSelectArticle(art.slug)}
-                    className="hover:text-blue-300 transition-colors text-left line-clamp-1"
-                  >
-                    {art.title}
-                  </button>
-                </li>
-              ))}
+            <ul className="space-y-2.5 text-xs">
+              <li>
+                <button
+                  onClick={() => onSelectArticle('what-is-a-hypercar')}
+                  className="hover:text-blue-300 transition-colors text-left"
+                >
+                  Read what makes a hypercar different
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onSelectArticle('best-classic-cars-to-invest-in')}
+                  className="hover:text-blue-300 transition-colors text-left"
+                >
+                  Explore the best classic cars to invest in guide
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onSelectArticle('luxury-motorcycles')}
+                  className="hover:text-blue-300 transition-colors text-left"
+                >
+                  Discover our luxury motorcycles showcase
+                </button>
+              </li>
             </ul>
           </div>
 
-          {/* Column 2: Historical & Battle Editorials */}
+          {/* Column 2: Showroom Navigation Links */}
           <div>
             <h5 className="font-mono-spec text-xs uppercase tracking-widest text-blue-400 font-bold mb-3.5">
-              Engineering & Battles
+              Showroom Directory
             </h5>
-            <ul className="space-y-2 text-xs">
-              {articles.slice(5, 10).map(art => (
-                <li key={art.id}>
-                  <button
-                    onClick={() => onSelectArticle(art.slug)}
-                    className="hover:text-blue-300 transition-colors text-left line-clamp-1"
-                  >
-                    {art.title}
-                  </button>
-                </li>
-              ))}
+            <ul className="space-y-2.5 text-xs">
+              <li>
+                <button
+                  onClick={() => onSelectCategory('All')}
+                  className="hover:text-blue-300 transition-colors text-left"
+                >
+                  Explore our hypercars showroom collection
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onSelectCategory('Hypercars')}
+                  className="hover:text-blue-300 transition-colors text-left"
+                >
+                  Browse our exotic supercars collection
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onSelectCategory('Superbikes')}
+                  className="hover:text-blue-300 transition-colors text-left"
+                >
+                  View the ultimate superbikes collection
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onSelectCategory('Classics & Heritage')}
+                  className="hover:text-blue-300 transition-colors text-left"
+                >
+                  Examine our vintage car collection
+                </button>
+              </li>
+              <li>
+                <a
+                  href="/keyword-research"
+                  className="text-amber-400 hover:text-amber-300 font-semibold transition-colors text-left flex items-center gap-1 pt-1"
+                >
+                  <span>📊 Keyword Research Table (/keyword-research)</span>
+                </a>
+              </li>
             </ul>
           </div>
 
-          {/* Column 3: Categories */}
+          {/* Column 3: Automotive Sectors */}
           <div>
             <h5 className="font-mono-spec text-xs uppercase tracking-widest text-blue-400 font-bold mb-3.5">
               Automotive Sectors
             </h5>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2.5 text-xs">
               {[
                 'Hypercars',
                 'Supercars',
                 'Classics & Heritage',
-                'Engineering & Tech',
-                'Track & Performance',
-                'German Performance',
-                'JDM Legends',
-                'Collections & Lifestyle'
+                'Superbikes'
               ].map(cat => (
                 <li key={cat}>
                   <button
@@ -164,31 +203,35 @@ export const Footer: React.FC<FooterProps> = ({
             </ul>
           </div>
 
-          {/* Column 4: SEO Index & Credibility */}
+          {/* Column 4: SEO Target Keywords & Credibility */}
           <div>
             <h5 className="font-mono-spec text-xs uppercase tracking-widest text-blue-400 font-bold mb-3.5">
-              Search Index & Keywords
+              Target SEO Keywords
             </h5>
             <div className="flex flex-wrap gap-1.5 text-[11px] font-mono-spec text-slate-500">
-              <span className="hover:text-slate-300 cursor-default">fastest hypercars</span>
+              <span className="text-blue-300">hypercars showroom</span>
               <span>·</span>
-              <span className="hover:text-slate-300 cursor-default">classic supercars</span>
+              <span className="text-blue-300">exotic supercars collection</span>
               <span>·</span>
-              <span className="hover:text-slate-300 cursor-default">Ferrari 250 GTO price</span>
+              <span className="text-blue-300">luxury car showroom</span>
               <span>·</span>
-              <span className="hover:text-slate-300 cursor-default">Ferrari vs Lamborghini</span>
+              <span className="text-blue-300">what is a hypercar</span>
               <span>·</span>
-              <span className="hover:text-slate-300 cursor-default">Koenigsegg Jesko</span>
+              <span className="text-blue-300">hypercar vs supercar</span>
               <span>·</span>
-              <span className="hover:text-slate-300 cursor-default">McLaren F1 history</span>
+              <span className="text-blue-300">fastest hypercars in the world</span>
               <span>·</span>
-              <span className="hover:text-slate-300 cursor-default">road car vs track car</span>
+              <span className="text-blue-300">best classic cars to invest in</span>
               <span>·</span>
-              <span className="hover:text-slate-300 cursor-default">BMW M vs AMG vs Audi RS</span>
+              <span className="text-blue-300">exotic classic cars</span>
               <span>·</span>
-              <span className="hover:text-slate-300 cursor-default">best JDM cars</span>
+              <span className="text-blue-300">vintage car collection</span>
               <span>·</span>
-              <span className="hover:text-slate-300 cursor-default">dream car garage</span>
+              <span className="text-blue-300">luxury motorcycles</span>
+              <span>·</span>
+              <span className="text-blue-300">superbikes collection</span>
+              <span>·</span>
+              <span className="text-blue-300">best luxury bikes in the world</span>
             </div>
             <p className="mt-4 text-[11px] text-slate-500 leading-relaxed">
               Every editorial is written by veteran automotive engineers and motorsport historians, backed by verified telemetry and factory specifications.
@@ -196,13 +239,13 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Bottom Copyright & Zero-Slop Standard */}
+        {/* Bottom Copyright & Compliance Standard */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono-spec text-slate-600">
           <div>
             © {new Date().getFullYear()} MIDNIGHT MOTORS. All rights reserved. Curated for automotive purists.
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-blue-400/80">Clean URL Slugs · Schema.org Validated</span>
+            <span className="text-blue-400/80">Clean Canonical URLs · Schema.org Validated · AEO Ready</span>
             <span>·</span>
             <span>Zero AI-Slop Design</span>
           </div>

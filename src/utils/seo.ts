@@ -1,7 +1,50 @@
 import { BlogArticle } from '../types/blog';
 
+export interface PageSEOConfig {
+  title: string;
+  description: string;
+  mainKeyword: string;
+  relatedKeywords: string[];
+  canonicalUrl: string;
+}
+
+export const SEO_PAGE_CONFIGS: Record<string, PageSEOConfig> = {
+  home: {
+    title: 'Hypercars Showroom | Exotic Supercars | Midnight Motors',
+    description:
+      'Visit our private hypercars showroom featuring an exotic supercars collection and rare hyper machinery. Discover elite performance. Explore the collection.',
+    mainKeyword: 'hypercars showroom',
+    relatedKeywords: ['exotic supercars collection', 'luxury car showroom'],
+    canonicalUrl: '/'
+  },
+  'what-is-a-hypercar': {
+    title: 'What is a Hypercar? Hypercar vs Supercar | Midnight Motors',
+    description:
+      'Wondering what is a hypercar? Compare hypercar vs supercar engineering, top speed records, aerodynamics, and bespoke power. Read the comprehensive guide.',
+    mainKeyword: 'what is a hypercar',
+    relatedKeywords: ['hypercar vs supercar', 'fastest hypercars in the world'],
+    canonicalUrl: '/what-is-a-hypercar'
+  },
+  'best-classic-cars-to-invest-in': {
+    title: 'Best Classic Cars to Invest In: Vintage | Midnight Motors',
+    description:
+      'Discover the best classic cars to invest in, from rare Ferrari icons to an exotic classic cars portfolio with proven returns. Explore our collector guide.',
+    mainKeyword: 'best classic cars to invest in',
+    relatedKeywords: ['exotic classic cars', 'vintage car collection'],
+    canonicalUrl: '/best-classic-cars-to-invest-in'
+  },
+  'luxury-motorcycles': {
+    title: 'Luxury Motorcycles: Superbikes Collection | Midnight Motors',
+    description:
+      'Explore the world of luxury motorcycles and view our rare superbikes collection featuring the pinnacle of two-wheel speed. Discover the full track showcase.',
+    mainKeyword: 'luxury motorcycles',
+    relatedKeywords: ['superbikes collection', 'best luxury bikes in the world'],
+    canonicalUrl: '/luxury-motorcycles'
+  }
+};
+
 export function updateSEO(article?: BlogArticle) {
-  // Ensure Google Search Console verification meta tag is always present
+  // Ensure Google Search Console verification meta tag is always preserved in head
   let verificationMeta = document.querySelector('meta[name="google-site-verification"]');
   if (!verificationMeta) {
     verificationMeta = document.createElement('meta');
@@ -11,36 +54,31 @@ export function updateSEO(article?: BlogArticle) {
   }
 
   if (article) {
-    document.title = `${article.seoTitle} | MIDNIGHT MOTORS`;
+    // Check if we have an explicit page config for this article
+    const config = SEO_PAGE_CONFIGS[article.slug];
+    const finalTitle = config ? config.title : `${article.seoTitle} | Midnight Motors`;
+    const finalDesc = config ? config.description : article.seoDescription;
+    const finalKeywords = config
+      ? [config.mainKeyword, ...config.relatedKeywords]
+      : [article.mainKeyword, ...article.relatedKeywords, ...article.seoKeywords];
 
-    // Meta Description
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute('content', article.seoDescription);
-
-    // Meta Keywords
-    let metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (!metaKeywords) {
-      metaKeywords = document.createElement('meta');
-      metaKeywords.setAttribute('name', 'keywords');
-      document.head.appendChild(metaKeywords);
-    }
-    metaKeywords.setAttribute('content', article.seoKeywords.join(', '));
+    document.title = finalTitle;
+    updateMetaTag('name', 'description', finalDesc);
+    updateMetaTag('name', 'keywords', finalKeywords.join(', '));
 
     // OpenGraph
-    updateMetaTag('property', 'og:title', article.seoTitle);
-    updateMetaTag('property', 'og:description', article.seoDescription);
+    updateMetaTag('property', 'og:title', finalTitle);
+    updateMetaTag('property', 'og:description', finalDesc);
     updateMetaTag('property', 'og:image', article.heroImage);
     updateMetaTag('property', 'og:type', 'article');
-    updateMetaTag('name', 'twitter:title', article.seoTitle);
-    updateMetaTag('name', 'twitter:description', article.seoDescription);
+    updateMetaTag('name', 'twitter:title', finalTitle);
+    updateMetaTag('name', 'twitter:description', finalDesc);
     updateMetaTag('name', 'twitter:image', article.heroImage);
 
-    // Inject JSON-LD Schema for Article & FAQPage
+    // Canonical link
+    updateCanonical(config ? config.canonicalUrl : `/${article.slug}`);
+
+    // Inject JSON-LD Schema
     injectSchema({
       '@context': 'https://schema.org',
       '@graph': [
@@ -59,13 +97,13 @@ export function updateSEO(article?: BlogArticle) {
           ],
           publisher: {
             '@type': 'Organization',
-            name: 'MIDNIGHT MOTORS',
+            name: 'Midnight Motors',
             logo: {
               '@type': 'ImageObject',
               url: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=500&q=80'
             }
           },
-          description: article.seoDescription
+          description: finalDesc
         },
         {
           '@type': 'FAQPage',
@@ -81,21 +119,23 @@ export function updateSEO(article?: BlogArticle) {
       ]
     });
   } else {
-    // Default Homepage SEO
-    document.title = 'MIDNIGHT MOTORS — Curated Hypercars, Supercars, Bikes & Automotive Icons';
-    updateMetaTag(
-      'name',
-      'description',
-      'Explore deep-dive technical engineering editorials on hypercars, classic supercars, JDM legends, superbikes, and the ultimate dream garage at MIDNIGHT MOTORS.'
-    );
+    // Default Homepage SEO configuration
+    const homeConfig = SEO_PAGE_CONFIGS.home;
+    document.title = homeConfig.title;
+    updateMetaTag('name', 'description', homeConfig.description);
     updateMetaTag(
       'name',
       'keywords',
-      'hypercars, supercars, classic cars, JDM legends, superbikes, Ferrari, Koenigsegg, Bugatti, McLaren F1, Porsche GT3 RS'
+      [homeConfig.mainKeyword, ...homeConfig.relatedKeywords].join(', ')
     );
-    updateMetaTag('property', 'og:title', 'MIDNIGHT MOTORS — Curated Hypercars, Supercars & Automotive Icons');
-    updateMetaTag('property', 'og:description', 'Deep-dive technical engineering editorials on the world’s most extraordinary automobiles.');
-    updateMetaTag('property', 'og:image', 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1600&q=85');
+    updateMetaTag('property', 'og:title', homeConfig.title);
+    updateMetaTag('property', 'og:description', homeConfig.description);
+    updateMetaTag(
+      'property',
+      'og:image',
+      'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80'
+    );
+    updateCanonical('/');
   }
 }
 
@@ -107,6 +147,16 @@ function updateMetaTag(keyType: 'name' | 'property', key: string, content: strin
     document.head.appendChild(element);
   }
   element.setAttribute('content', content);
+}
+
+function updateCanonical(path: string) {
+  let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+  if (!link) {
+    link = document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    document.head.appendChild(link);
+  }
+  link.setAttribute('href', `${window.location.origin}${path}`);
 }
 
 function injectSchema(schemaObj: object) {

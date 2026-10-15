@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /keyword-research
+
+Sitemap: https://midnight-motors-1an9.vercel.app/sitemap.xml

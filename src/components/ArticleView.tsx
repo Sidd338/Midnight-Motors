@@ -15,8 +15,8 @@ import {
   HelpCircle,
   ThumbsUp,
   ThumbsDown,
-  Car,
-  Compass
+  Compass,
+  ArrowRight
 } from 'lucide-react';
 import { BlogArticle } from '../types/blog';
 import { updateSEO } from '../utils/seo';
@@ -77,15 +77,15 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
   }, [article]);
 
   const handleCopyLink = () => {
-    const fullUrl = window.location.origin + `/blog/${article.slug}`;
+    const fullUrl = `${window.location.origin}/${article.slug}`;
     navigator.clipboard.writeText(fullUrl);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
   };
 
   const handleShare = (platform: 'twitter' | 'linkedin' | 'facebook') => {
-    const fullUrl = encodeURIComponent(window.location.origin + `/blog/${article.slug}`);
-    const text = encodeURIComponent(`${article.title} via @MidnightMotors`);
+    const fullUrl = encodeURIComponent(`${window.location.origin}/${article.slug}`);
+    const text = encodeURIComponent(`${article.title} | Midnight Motors`);
 
     let shareUrl = '';
     if (platform === 'twitter') {
@@ -116,15 +116,16 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb Navigation */}
+        {/* Breadcrumb Navigation with Keyword-Rich Anchor Text */}
         <nav aria-label="Breadcrumb" className="pt-4 pb-6">
           <ol className="flex items-center gap-2 text-xs font-mono-spec text-slate-400">
             <li>
               <button
                 onClick={onNavigateHome}
                 className="hover:text-blue-400 transition-colors flex items-center gap-1"
+                title="Return to hypercars showroom homepage"
               >
-                <ArrowLeft className="w-3.5 h-3.5" /> Home
+                <ArrowLeft className="w-3.5 h-3.5" /> Return to hypercars showroom
               </button>
             </li>
             <li aria-hidden="true">/</li>
@@ -154,7 +155,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
               {article.readTime}
             </span>
             <span aria-hidden="true" className="text-slate-700">·</span>
-            <span className="text-slate-400 uppercase">Slug: /blog/{article.slug}</span>
+            <span className="text-slate-400 uppercase">Canonical URL: /{article.slug}</span>
           </div>
 
           <h1 className="font-display text-3xl sm:text-5xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
@@ -171,6 +172,8 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
               <img
                 src={article.author.avatar}
                 alt={article.author.name}
+                width={48}
+                height={48}
                 className="w-12 h-12 rounded-full object-cover border-2 border-blue-500/50 shadow-md shadow-blue-950"
               />
               <div>
@@ -241,11 +244,13 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
           </div>
         </header>
 
-        {/* Hero Image Showcase */}
+        {/* Hero Image Showcase with Explicit Dimensions and Descriptive Alt */}
         <figure className="mb-14 overflow-hidden rounded-2xl border border-blue-900/40 bg-slate-950 shadow-2xl shadow-blue-950/40">
           <img
             src={article.heroImage}
             alt={article.heroImageAlt}
+            width={1200}
+            height={675}
             className="w-full max-h-[580px] object-cover"
           />
           <figcaption className="p-3.5 text-xs text-slate-400 font-mono-spec bg-[#070b14] border-t border-blue-950/80 flex items-center justify-between">
@@ -304,6 +309,8 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                   <img
                     src={article.author.avatar}
                     alt={article.author.name}
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-full object-cover border border-blue-500/40"
                   />
                   <div>
@@ -316,17 +323,17 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                 </p>
               </div>
 
-              {/* Quick Share Widget */}
+              {/* Cross-Link Callout to Showroom */}
               <div className="p-4 bg-gradient-to-br from-blue-950/40 to-slate-950 border border-blue-800/30 rounded-xl text-center">
                 <span className="text-xs text-slate-300 font-medium block mb-2">
-                  Enjoying this technical analysis?
+                  Visit the physical collection:
                 </span>
                 <button
-                  onClick={handleCopyLink}
+                  onClick={onNavigateHome}
                   className="w-full py-2 px-3 bg-blue-600 hover:bg-blue-500 text-white rounded text-xs font-semibold uppercase tracking-wider transition-colors shadow-md shadow-blue-950 flex items-center justify-center gap-1.5"
                 >
-                  <Share2 className="w-3.5 h-3.5" />
-                  <span>Share with Enthusiasts</span>
+                  <span>Explore our hypercars showroom</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
@@ -336,6 +343,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
           <main className="lg:col-span-8 order-1 lg:order-2 space-y-12">
             {article.contentSections.map((section, idx) => (
               <section key={section.id} id={section.id} className="scroll-mt-28">
+                {/* H2 Question Heading per AEO Guidelines */}
                 <h2 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2">
                   {section.heading}
                 </h2>
@@ -346,16 +354,35 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                 )}
 
                 <div className="space-y-4 text-slate-300 text-base sm:text-lg leading-relaxed font-light">
-                  {section.body.map((para, pIdx) => (
-                    <p key={pIdx}>
-                      {idx === 0 && pIdx === 0 ? (
-                        <span className="float-left text-4xl sm:text-5xl font-display font-extrabold text-blue-400 mr-3 leading-none mt-1">
-                          {para.charAt(0)}
-                        </span>
-                      ) : null}
-                      {idx === 0 && pIdx === 0 ? para.slice(1) : para}
-                    </p>
-                  ))}
+                  {section.body.map((para, pIdx) => {
+                    // Check if paragraph is in Q&A format (starts with question)
+                    const isQuestionStyle =
+                      para.startsWith('What ') ||
+                      para.startsWith('Which ') ||
+                      para.startsWith('How ') ||
+                      para.startsWith('Where ') ||
+                      para.includes('?');
+
+                    return (
+                      <div
+                        key={pIdx}
+                        className={
+                          isQuestionStyle && pIdx === 0 && idx < 3
+                            ? 'p-4 bg-blue-950/20 border-l-2 border-blue-400/80 rounded-r-lg'
+                            : ''
+                        }
+                      >
+                        <p>
+                          {idx === 0 && pIdx === 0 && !isQuestionStyle ? (
+                            <span className="float-left text-4xl sm:text-5xl font-display font-extrabold text-blue-400 mr-3 leading-none mt-1">
+                              {para.charAt(0)}
+                            </span>
+                          ) : null}
+                          {idx === 0 && pIdx === 0 && !isQuestionStyle ? para.slice(1) : para}
+                        </p>
+                      </div>
+                    );
+                  })}
                 </div>
 
                 {/* Optional Callout / Editorial Quote */}
@@ -424,7 +451,9 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                     <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
                       <img
                         src={rec.image}
-                        alt={rec.name}
+                        alt={`${rec.name} recommended in our ${article.category.toLowerCase()} portfolio`}
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         loading="lazy"
                       />
@@ -527,13 +556,13 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
             <section id="faqs" className="pt-8 border-t border-blue-900/40 scroll-mt-28">
               <div className="flex items-center gap-2 text-xs font-mono-spec text-blue-400 uppercase tracking-widest mb-2 font-semibold">
                 <HelpCircle className="w-4 h-4 text-blue-400" />
-                Knowledge Base
+                Knowledge Base & AEO
               </div>
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
                 Frequently Asked Questions
               </h2>
               <p className="text-sm text-slate-400 mb-6">
-                Technical inquiries answered by our editors and automotive engineering consultants.
+                Direct answers to the most common questions our showroom curators receive from collectors and enthusiasts.
               </p>
 
               <div className="space-y-3">
@@ -566,10 +595,10 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
               </div>
             </section>
 
-            {/* RELATED POSTS SECTION */}
+            {/* RELATED POSTS SECTION WITH KEYWORD-RICH ANCHORS */}
             {relatedArticles.length > 0 && (
               <section className="pt-12 border-t border-blue-900/40">
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
                   <div>
                     <span className="text-xs font-mono-spec text-blue-400 uppercase tracking-widest font-semibold block mb-1">
                       Continue Reading
@@ -582,38 +611,49 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                     onClick={onNavigateHome}
                     className="text-xs text-blue-400 hover:text-white font-mono-spec uppercase tracking-wider flex items-center gap-1 transition-colors"
                   >
-                    View All Articles →
+                    Explore our hypercars showroom and collections →
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                  {relatedArticles.map(rel => (
-                    <div
-                      key={rel.id}
-                      onClick={() => onSelectArticle(rel.slug)}
-                      className="group cursor-pointer bg-[#090e1a] border border-blue-900/30 hover:border-blue-500/50 rounded-xl overflow-hidden transition-all duration-300 shadow-md shadow-black/40 hover:-translate-y-1"
-                    >
-                      <div className="aspect-[16/10] overflow-hidden bg-slate-900">
-                        <img
-                          src={rel.heroImage}
-                          alt={rel.heroImageAlt}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {relatedArticles.map(rel => {
+                    const descriptiveLinkText =
+                      rel.slug === 'what-is-a-hypercar'
+                        ? 'Read what makes a hypercar different'
+                        : rel.slug === 'best-classic-cars-to-invest-in'
+                        ? 'Explore the best classic cars to invest in guide'
+                        : 'Discover our luxury motorcycles showcase';
+
+                    return (
+                      <div
+                        key={rel.id}
+                        onClick={() => onSelectArticle(rel.slug)}
+                        className="group cursor-pointer bg-[#090e1a] border border-blue-900/30 hover:border-blue-500/50 rounded-xl overflow-hidden transition-all duration-300 shadow-md shadow-black/40 hover:-translate-y-1"
+                      >
+                        <div className="aspect-[16/10] overflow-hidden bg-slate-900">
+                          <img
+                            src={rel.heroImage}
+                            alt={rel.heroImageAlt}
+                            width={800}
+                            height={500}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="p-4">
+                          <span className="text-[11px] font-mono-spec text-blue-400 uppercase block mb-1">
+                            {rel.category}
+                          </span>
+                          <h4 className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors line-clamp-2 mb-3">
+                            {rel.title}
+                          </h4>
+                          <span className="text-xs font-semibold text-blue-400 font-mono-spec flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            {descriptiveLinkText} <ArrowRight className="w-3.5 h-3.5" />
+                          </span>
+                        </div>
                       </div>
-                      <div className="p-4">
-                        <span className="text-[11px] font-mono-spec text-blue-400 uppercase block mb-1">
-                          {rel.category}
-                        </span>
-                        <h4 className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors line-clamp-2 mb-2">
-                          {rel.title}
-                        </h4>
-                        <span className="text-xs text-slate-400 flex items-center gap-1">
-                          <Clock className="w-3 h-3" /> {rel.readTime}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </section>
             )}

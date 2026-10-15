@@ -74,6 +74,8 @@ export interface BlogArticle {
   seoTitle: string;
   seoDescription: string;
   seoKeywords: string[];
+  mainKeyword: string;
+  relatedKeywords: string[];
   category: ArticleCategory;
   vehicleType: 'cars' | 'bikes' | 'both';
   heroImage: string;

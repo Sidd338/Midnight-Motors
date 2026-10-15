@@ -9,6 +9,7 @@ interface NavbarProps {
   onOpenSearch: () => void;
   onOpenSaved: () => void;
   onOpenGarageBuilder: () => void;
+  onOpenKeywordResearch?: () => void;
   savedCount: number;
 }
 
@@ -19,6 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenSearch,
   onOpenSaved,
   onOpenGarageBuilder,
+  onOpenKeywordResearch,
   savedCount
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,16 +34,24 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const categories: { label: string; value: ArticleCategory | 'All' }[] = [
-    { label: 'All Articles', value: 'All' },
-    { label: 'Hypercars', value: 'Hypercars' },
-    { label: 'Supercars', value: 'Supercars' },
-    { label: 'Classics', value: 'Classics & Heritage' },
-    { label: 'Engineering', value: 'Engineering & Tech' },
-    { label: 'Track Weapons', value: 'Track & Performance' },
-    { label: 'German Battle', value: 'German Performance' },
-    { label: 'JDM Legends', value: 'JDM Legends' }
+  const coreLinks = [
+    { label: 'Showroom Home', slug: '', path: '/' },
+    { label: 'What is a Hypercar?', slug: 'what-is-a-hypercar', path: '/what-is-a-hypercar' },
+    { label: 'Classic Car Investments', slug: 'best-classic-cars-to-invest-in', path: '/best-classic-cars-to-invest-in' },
+    { label: 'Luxury Motorcycles', slug: 'luxury-motorcycles', path: '/luxury-motorcycles' }
   ];
+
+  const handleNavClick = (path: string) => {
+    if (path === '/') {
+      onNavigateHome();
+    } else {
+      const cleanSlug = path.replace('/', '');
+      window.history.pushState({ slug: cleanSlug }, '', path);
+      // Trigger popstate so App parses URL cleanly
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    }
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header
@@ -53,13 +63,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Brand Mark */}
+          {/* Brand Mark with Keyword-Rich Anchor Text */}
           <button
             onClick={() => {
               onNavigateHome();
               setMobileMenuOpen(false);
             }}
             className="flex items-center gap-3 text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
+            title="Midnight Motors hypercars showroom homepage"
           >
             <div className="w-9 h-9 rounded-md bg-gradient-to-br from-blue-600 via-blue-700 to-slate-900 border border-blue-400/30 flex items-center justify-center shadow-lg shadow-blue-900/40 group-hover:border-blue-400 transition-colors">
               <Gauge className="w-5 h-5 text-blue-100 group-hover:rotate-12 transition-transform duration-300" />
@@ -74,24 +85,32 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </button>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Links with Exact Clean URLs and Descriptive Text */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-            {categories.slice(0, 7).map(cat => (
+            {coreLinks.map(link => (
               <button
-                key={cat.value}
-                onClick={() => {
-                  onSelectCategory(cat.value);
-                  onNavigateHome();
-                }}
-                className={`px-3 py-1.5 text-xs font-medium tracking-wide uppercase transition-colors rounded-sm ${
-                  activeCategory === cat.value
-                    ? 'text-blue-400 border-b-2 border-blue-500 font-semibold'
-                    : 'text-slate-300 hover:text-white hover:bg-blue-950/30'
-                }`}
+                key={link.path}
+                onClick={() => handleNavClick(link.path)}
+                className="px-3 py-1.5 text-xs font-medium tracking-wide uppercase transition-colors rounded-sm text-slate-300 hover:text-white hover:bg-blue-950/30"
               >
-                {cat.label}
+                {link.label}
               </button>
             ))}
+
+            {/* Keyword Research Table Link */}
+            <button
+              onClick={() => {
+                if (onOpenKeywordResearch) {
+                  onOpenKeywordResearch();
+                } else {
+                  handleNavClick('/keyword-research');
+                }
+              }}
+              className="px-2.5 py-1 text-xs font-semibold tracking-wider uppercase text-amber-300 bg-amber-950/50 hover:bg-amber-900/60 border border-amber-600/50 rounded transition-colors flex items-center gap-1.5 shadow-sm"
+              title="Open Keyword Research Table"
+            >
+              <span>📊 Keyword Table</span>
+            </button>
 
             {/* Dream Garage Shortcut */}
             <button
@@ -108,10 +127,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={onOpenSearch}
               className="flex items-center gap-2 px-3 py-1.5 bg-slate-900/80 hover:bg-slate-800 border border-slate-700/60 hover:border-blue-500/60 rounded text-slate-300 text-xs transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-              title="Search articles (⌘K)"
+              title="Search hypercars showroom (⌘K)"
             >
               <Search className="w-3.5 h-3.5 text-blue-400" />
-              <span className="hidden sm:inline text-slate-400">Search articles...</span>
+              <span className="hidden sm:inline text-slate-400">Search showroom...</span>
               <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-slate-800 text-slate-400 rounded border border-slate-700 font-mono-spec">
                 ⌘K
               </kbd>
@@ -147,28 +166,33 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="lg:hidden bg-[#070b14]/98 border-b border-blue-900/40 px-4 pt-4 pb-6 mt-3 shadow-2xl backdrop-blur-xl animate-in slide-in-from-top-4 duration-200">
           <div className="flex flex-col gap-1.5">
             <span className="text-[11px] font-mono-spec tracking-widest uppercase text-slate-500 px-3 py-1">
-              Automotive Categories
+              Navigation & Cornerstones
             </span>
-            {categories.map(cat => (
+            {coreLinks.map(link => (
               <button
-                key={cat.value}
-                onClick={() => {
-                  onSelectCategory(cat.value);
-                  onNavigateHome();
-                  setMobileMenuOpen(false);
-                }}
-                className={`flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded transition-colors text-left ${
-                  activeCategory === cat.value
-                    ? 'bg-blue-900/40 text-blue-400 border-l-2 border-blue-500 font-semibold'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-900/60'
-                }`}
+                key={link.path}
+                onClick={() => handleNavClick(link.path)}
+                className="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded transition-colors text-left text-slate-300 hover:text-white hover:bg-slate-900/60"
               >
-                <span>{cat.label}</span>
+                <span>{link.label}</span>
                 <ChevronRight className="w-4 h-4 text-slate-600" />
               </button>
             ))}
 
-            <div className="pt-3 mt-2 border-t border-slate-800">
+            <div className="pt-3 mt-2 border-t border-slate-800 space-y-2">
+              <button
+                onClick={() => {
+                  if (onOpenKeywordResearch) {
+                    onOpenKeywordResearch();
+                  } else {
+                    handleNavClick('/keyword-research');
+                  }
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-amber-950/70 hover:bg-amber-900 border border-amber-600/60 text-amber-200 font-semibold text-xs uppercase tracking-wider rounded transition-colors shadow-lg"
+              >
+                <span>📊 Open Keyword Research Table</span>
+              </button>
               <button
                 onClick={() => {
                   onOpenGarageBuilder();
@@ -177,7 +201,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs uppercase tracking-wider rounded transition-colors shadow-lg shadow-blue-900/40"
               >
                 <Compass className="w-4 h-4" />
-                <span>Build Dream Garage (Article 10 Tool)</span>
+                <span>Build Dream Garage Collection</span>
               </button>
             </div>
           </div>

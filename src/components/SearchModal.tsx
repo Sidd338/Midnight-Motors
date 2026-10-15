@@ -147,6 +147,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 <img
                   src={art.heroImage}
                   alt={art.heroImageAlt}
+                  width={96}
+                  height={64}
                   className="w-20 h-14 sm:w-24 sm:h-16 object-cover rounded shrink-0 border border-slate-800 group-hover:border-blue-500/50 transition-colors"
                   loading="lazy"
                 />

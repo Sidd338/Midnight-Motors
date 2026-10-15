@@ -10,6 +10,19 @@ interface ArticleCardProps {
   layout?: 'standard' | 'horizontal';
 }
 
+function getDescriptiveAnchorText(slug: string): string {
+  if (slug === 'what-is-a-hypercar') {
+    return 'Read what makes a hypercar different';
+  }
+  if (slug === 'best-classic-cars-to-invest-in') {
+    return 'Explore the best classic cars to invest in guide';
+  }
+  if (slug === 'luxury-motorcycles') {
+    return 'Discover our luxury motorcycles and superbikes collection';
+  }
+  return 'Read the comprehensive engineering guide';
+}
+
 export const ArticleCard: React.FC<ArticleCardProps> = ({
   article,
   onSelect,
@@ -17,6 +30,8 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
   onToggleSave,
   layout = 'standard'
 }) => {
+  const descriptiveCta = getDescriptiveAnchorText(article.slug);
+
   if (layout === 'horizontal') {
     return (
       <article
@@ -27,6 +42,8 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           <img
             src={article.heroImage}
             alt={article.heroImageAlt}
+            width={1200}
+            height={675}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
@@ -66,6 +83,8 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
               <img
                 src={article.author.avatar}
                 alt={article.author.name}
+                width={28}
+                height={28}
                 className="w-7 h-7 rounded-full object-cover border border-blue-500/40"
               />
               <span className="text-xs text-slate-300 font-medium">{article.author.name}</span>
@@ -84,7 +103,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
               </button>
 
               <span className="text-xs font-semibold text-blue-400 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform font-mono-spec">
-                READ ARTICLE <ArrowUpRight className="w-3.5 h-3.5" />
+                {descriptiveCta} <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
               </span>
             </div>
           </div>
@@ -103,6 +122,8 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
         <img
           src={article.heroImage}
           alt={article.heroImageAlt}
+          width={1200}
+          height={675}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
@@ -143,19 +164,21 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           </p>
         </div>
 
-        {/* Card Footer */}
+        {/* Card Footer with Keyword-Rich Descriptive Anchor Text */}
         <div className="pt-3 border-t border-blue-950/60 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
               src={article.author.avatar}
               alt={article.author.name}
+              width={24}
+              height={24}
               className="w-6 h-6 rounded-full object-cover border border-blue-500/30"
             />
             <span className="text-xs text-slate-300">{article.author.name}</span>
           </div>
 
-          <span className="text-xs font-semibold text-blue-400 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform font-mono-spec">
-            EXPLORE <ArrowUpRight className="w-3.5 h-3.5" />
+          <span className="text-xs font-semibold text-blue-400 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform font-mono-spec text-right">
+            {descriptiveCta} <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
           </span>
         </div>
       </div>
