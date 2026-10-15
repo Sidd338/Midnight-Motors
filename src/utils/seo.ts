@@ -66,25 +66,34 @@ export function updateSEO(article?: BlogArticle) {
     updateMetaTag('name', 'description', finalDesc);
     updateMetaTag('name', 'keywords', finalKeywords.join(', '));
 
-    // OpenGraph
+    // OpenGraph & Twitter Cards
     updateMetaTag('property', 'og:title', finalTitle);
     updateMetaTag('property', 'og:description', finalDesc);
     updateMetaTag('property', 'og:image', article.heroImage);
     updateMetaTag('property', 'og:type', 'article');
+    const cleanCanonicalPath = config ? config.canonicalUrl : `/${article.slug}`;
+    const fullCleanUrl = `${window.location.origin}${cleanCanonicalPath}`;
+    updateMetaTag('property', 'og:url', fullCleanUrl);
     updateMetaTag('name', 'twitter:title', finalTitle);
     updateMetaTag('name', 'twitter:description', finalDesc);
     updateMetaTag('name', 'twitter:image', article.heroImage);
+    updateMetaTag('name', 'twitter:url', fullCleanUrl);
 
-    // Canonical link
-    updateCanonical(config ? config.canonicalUrl : `/${article.slug}`);
+    // Canonical link with clean defined URL
+    updateCanonical(cleanCanonicalPath);
 
-    // Inject JSON-LD Schema
+    // Inject JSON-LD Schema with Clean Defined URL
     injectSchema({
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'NewsArticle',
           headline: article.title,
+          url: fullCleanUrl,
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': fullCleanUrl
+          },
           image: [article.heroImage],
           datePublished: '2026-10-01T08:00:00+00:00',
           dateModified: '2026-10-14T08:00:00+00:00',
@@ -121,6 +130,7 @@ export function updateSEO(article?: BlogArticle) {
   } else {
     // Default Homepage SEO configuration
     const homeConfig = SEO_PAGE_CONFIGS.home;
+    const homeUrl = `${window.location.origin}/`;
     document.title = homeConfig.title;
     updateMetaTag('name', 'description', homeConfig.description);
     updateMetaTag(
@@ -135,6 +145,8 @@ export function updateSEO(article?: BlogArticle) {
       'og:image',
       'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80'
     );
+    updateMetaTag('property', 'og:url', homeUrl);
+    updateMetaTag('name', 'twitter:url', homeUrl);
     updateCanonical('/');
   }
 }

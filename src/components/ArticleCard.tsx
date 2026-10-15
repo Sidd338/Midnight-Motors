@@ -35,10 +35,22 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
   if (layout === 'horizontal') {
     return (
       <article
-        onClick={() => onSelect(article.slug)}
-        className="group relative flex flex-col md:flex-row gap-5 p-4 sm:p-5 bg-[#090e1a]/80 hover:bg-[#0b1222] border border-blue-900/30 hover:border-blue-500/50 rounded-xl transition-all duration-300 cursor-pointer shadow-lg shadow-black/40"
+        className="group relative flex flex-col md:flex-row gap-5 p-4 sm:p-5 bg-[#090e1a]/80 hover:bg-[#0b1222] border border-blue-900/30 hover:border-blue-500/50 rounded-xl transition-all duration-300 shadow-lg shadow-black/40"
       >
-        <div className="relative w-full md:w-72 h-48 md:h-auto overflow-hidden rounded-lg shrink-0 border border-slate-800">
+        {/* Semantic clean URL anchor for entire card */}
+        <a
+          href={`/${article.slug}`}
+          onClick={(e) => {
+            if (!e.metaKey && !e.ctrlKey && !e.shiftKey) {
+              e.preventDefault();
+              onSelect(article.slug);
+            }
+          }}
+          className="absolute inset-0 z-0 rounded-xl"
+          aria-label={article.title}
+        />
+
+        <div className="relative w-full md:w-72 h-48 md:h-auto overflow-hidden rounded-lg shrink-0 border border-slate-800 pointer-events-none">
           <img
             src={article.heroImage}
             alt={article.heroImageAlt}
@@ -50,15 +62,19 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </div>
 
-        <div className="flex-1 flex flex-col justify-between">
+        <div className="flex-1 flex flex-col justify-between pointer-events-none">
           <div>
-            {/* Clean unboxed metadata per Zero-Pill discipline */}
-            <div className="flex items-center gap-2 text-xs font-mono-spec text-blue-400 mb-2">
+            {/* Clean unboxed metadata with clean defined URL badge */}
+            <div className="flex flex-wrap items-center gap-2 text-xs font-mono-spec text-blue-400 mb-2">
               <span className="uppercase tracking-wider font-semibold">{article.category}</span>
               <span aria-hidden="true" className="text-slate-600">·</span>
               <span className="text-slate-400">{article.readTime}</span>
               <span aria-hidden="true" className="text-slate-600">·</span>
               <span className="text-slate-400">{article.publishedDate}</span>
+              <span aria-hidden="true" className="text-slate-600">·</span>
+              <span className="text-emerald-400 bg-emerald-950/50 px-1.5 py-0.5 rounded border border-emerald-800/40 text-[10px]">
+                /{article.slug}
+              </span>
               {article.trendingScore > 95 && (
                 <>
                   <span aria-hidden="true" className="text-slate-600">·</span>
@@ -93,7 +109,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             <div className="flex items-center gap-3">
               <button
                 onClick={(e) => onToggleSave(e, article.slug)}
-                className={`p-2 rounded hover:bg-blue-950 transition-colors ${
+                className={`relative z-10 pointer-events-auto p-2 rounded hover:bg-blue-950 transition-colors ${
                   isSaved ? 'text-blue-400' : 'text-slate-400 hover:text-white'
                 }`}
                 title={isSaved ? 'Remove from reading list' : 'Save to reading list'}
@@ -114,11 +130,23 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
 
   return (
     <article
-      onClick={() => onSelect(article.slug)}
-      className="group relative flex flex-col bg-[#090e1a]/80 hover:bg-[#0c1426] border border-blue-900/30 hover:border-blue-500/50 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer shadow-lg shadow-black/40 hover:shadow-blue-950/30 hover:-translate-y-1"
+      className="group relative flex flex-col bg-[#090e1a]/80 hover:bg-[#0c1426] border border-blue-900/30 hover:border-blue-500/50 rounded-xl overflow-hidden transition-all duration-300 shadow-lg shadow-black/40 hover:shadow-blue-950/30 hover:-translate-y-1"
     >
+      {/* Semantic clean URL anchor for entire card */}
+      <a
+        href={`/${article.slug}`}
+        onClick={(e) => {
+          if (!e.metaKey && !e.ctrlKey && !e.shiftKey) {
+            e.preventDefault();
+            onSelect(article.slug);
+          }
+        }}
+        className="absolute inset-0 z-0"
+        aria-label={article.title}
+      />
+
       {/* Article Image Container */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-slate-900 border-b border-blue-950/60">
+      <div className="relative aspect-[16/10] overflow-hidden bg-slate-900 border-b border-blue-950/60 pointer-events-none">
         <img
           src={article.heroImage}
           alt={article.heroImageAlt}
@@ -128,30 +156,35 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#090e1a] via-transparent to-transparent opacity-80" />
-
-        {/* Bookmark quick button */}
-        <button
-          onClick={(e) => onToggleSave(e, article.slug)}
-          className={`absolute top-3 right-3 p-2 rounded-lg bg-black/60 backdrop-blur-md border border-slate-700/60 transition-colors ${
-            isSaved ? 'text-blue-400 border-blue-500/60' : 'text-slate-300 hover:text-white hover:border-slate-500'
-          }`}
-          title={isSaved ? 'Remove from reading list' : 'Save to reading list'}
-          aria-label="Save article"
-        >
-          <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-blue-500 text-blue-500' : ''}`} />
-        </button>
       </div>
 
+      {/* Bookmark quick button */}
+      <button
+        onClick={(e) => onToggleSave(e, article.slug)}
+        className={`absolute top-3 right-3 z-10 p-2 rounded-lg bg-black/60 backdrop-blur-md border border-slate-700/60 transition-colors ${
+          isSaved ? 'text-blue-400 border-blue-500/60' : 'text-slate-300 hover:text-white hover:border-slate-500'
+        }`}
+        title={isSaved ? 'Remove from reading list' : 'Save to reading list'}
+        aria-label="Save article"
+      >
+        <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-blue-500 text-blue-500' : ''}`} />
+      </button>
+
       {/* Card Content Body */}
-      <div className="flex-1 p-5 flex flex-col justify-between">
+      <div className="flex-1 p-5 flex flex-col justify-between pointer-events-none">
         <div>
-          {/* Metadata unboxed text */}
-          <div className="flex items-center gap-2 text-xs font-mono-spec text-blue-400 mb-2">
-            <span className="uppercase tracking-wider font-semibold">{article.category}</span>
-            <span aria-hidden="true" className="text-slate-600">·</span>
-            <span className="text-slate-400 flex items-center gap-1">
-              <Clock className="w-3 h-3" />
-              {article.readTime}
+          {/* Metadata unboxed text with clean defined URL badge */}
+          <div className="flex items-center justify-between text-xs font-mono-spec text-blue-400 mb-2">
+            <div className="flex items-center gap-2">
+              <span className="uppercase tracking-wider font-semibold">{article.category}</span>
+              <span aria-hidden="true" className="text-slate-600">·</span>
+              <span className="text-slate-400 flex items-center gap-1">
+                <Clock className="w-3 h-3" />
+                {article.readTime}
+              </span>
+            </div>
+            <span className="text-emerald-400 bg-emerald-950/50 px-1.5 py-0.5 rounded border border-emerald-800/40 text-[10px]">
+              /{article.slug}
             </span>
           </div>
 

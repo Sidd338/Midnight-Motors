@@ -20,7 +20,8 @@ import {
   ExternalLink,
   Globe,
   ShieldCheck,
-  BookOpen
+  BookOpen,
+  Copy
 } from 'lucide-react';
 import { BlogArticle, ArticleCategory } from '../types/blog';
 import { updateSEO } from '../utils/seo';
@@ -50,6 +51,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
 }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [copiedCitation, setCopiedCitation] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [activeTocId, setActiveTocId] = useState<string>('');
 
@@ -233,28 +235,112 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb Navigation with Keyword-Rich Anchor Text */}
-        <nav aria-label="Breadcrumb" className="pt-4 pb-6">
-          <ol className="flex items-center gap-2 text-xs font-mono-spec text-slate-400">
+        {/* Breadcrumb Navigation with Defined Clean URLs and Keyword-Rich Anchor Text */}
+        <nav aria-label="Breadcrumb" className="pt-4 pb-4">
+          <ol className="flex flex-wrap items-center gap-2 text-xs font-mono-spec text-slate-400">
             <li>
-              <button
-                onClick={onNavigateHome}
-                className="hover:text-blue-400 transition-colors flex items-center gap-1"
+              <a
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigateHome();
+                }}
+                className="hover:text-blue-400 transition-colors flex items-center gap-1 text-slate-300"
                 title="Return to hypercars showroom homepage"
               >
-                <ArrowLeft className="w-3.5 h-3.5" /> Return to hypercars showroom
+                <ArrowLeft className="w-3.5 h-3.5 text-blue-400" />
+                <span>Showroom</span>
+              </a>
+            </li>
+            <li aria-hidden="true" className="text-slate-600">/</li>
+            <li>
+              <button
+                type="button"
+                onClick={() => onSelectCategory?.(article.category)}
+                className="hover:text-blue-300 text-blue-400 transition-colors"
+                title={`Filter showroom by ${article.category}`}
+              >
+                {article.category}
               </button>
             </li>
-            <li aria-hidden="true">/</li>
+            <li aria-hidden="true" className="text-slate-600">/</li>
             <li>
-              <span className="text-blue-400">{article.category}</span>
+              <a
+                href={`/${article.slug}`}
+                onClick={(e) => e.preventDefault()}
+                className="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors flex items-center gap-1 bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-800/40"
+                title={`Clean Defined URL: /${article.slug}`}
+              >
+                <Globe className="w-3 h-3 text-emerald-400" />
+                <span>/{article.slug}</span>
+              </a>
             </li>
-            <li aria-hidden="true">/</li>
-            <li className="text-slate-500 truncate max-w-xs sm:max-w-md">
+            <li aria-hidden="true" className="text-slate-600 hidden sm:inline">/</li>
+            <li className="text-slate-400 truncate max-w-xs sm:max-w-md hidden sm:inline">
               {article.title}
             </li>
           </ol>
         </nav>
+
+        {/* Defined Clean URL & Canonical Permalink Bar */}
+        <div className="mb-6 p-3 sm:p-3.5 bg-[#080d19]/90 border border-blue-900/40 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs shadow-inner shadow-black/50">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-950/70 text-emerald-400 border border-emerald-800/50 shrink-0">
+              <Globe className="w-4 h-4" />
+            </div>
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="font-mono-spec text-[10px] uppercase tracking-wider font-bold text-emerald-400 flex items-center gap-1">
+                  <span>CLEAN DEFINED URL</span>
+                  <span className="text-slate-600">·</span>
+                  <span>CANONICAL PERMALINK</span>
+                </span>
+                <span className="text-[10px] font-mono-spec px-1.5 py-0.2 bg-blue-950/80 text-blue-300 border border-blue-800/40 rounded hidden sm:inline">
+                  HTTP 200
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5 font-mono-spec text-slate-300 text-xs sm:text-sm truncate">
+                <span className="text-slate-500 hidden sm:inline">{window.location.origin}</span>
+                <span className="text-emerald-300 font-bold">/{article.slug}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 shrink-0 self-end md:self-auto font-mono-spec">
+            <button
+              onClick={handleCopyLink}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs transition-all ${
+                copiedLink
+                  ? 'bg-emerald-950/80 border-emerald-500/80 text-emerald-300'
+                  : 'bg-slate-900 hover:bg-slate-800 border-slate-700 hover:border-blue-500 text-slate-300 hover:text-white'
+              }`}
+              title={`Copy defined clean URL: ${window.location.origin}/${article.slug}`}
+            >
+              {copiedLink ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5 text-blue-400" />
+                  <span>Copy Clean URL</span>
+                </>
+              )}
+            </button>
+
+            <a
+              href={`/${article.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white text-xs transition-colors"
+              title="Open clean defined URL in new tab"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-blue-400" />
+              <span className="hidden sm:inline">Open</span>
+            </a>
+          </div>
+        </div>
 
         {/* Article Header */}
         <header className="mb-10">
@@ -272,7 +358,18 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
               {article.readTime}
             </span>
             <span aria-hidden="true" className="text-slate-700">·</span>
-            <span className="text-slate-400 uppercase">Canonical URL: /{article.slug}</span>
+            <a
+              href={`/${article.slug}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleCopyLink();
+              }}
+              title="Click to copy clean defined canonical URL"
+              className="text-emerald-400 hover:text-emerald-300 font-mono-spec flex items-center gap-1 uppercase transition-colors"
+            >
+              <Link2 className="w-3 h-3" />
+              <span>Clean URL: /{article.slug}</span>
+            </a>
           </div>
 
           <h1 className="font-display text-3xl sm:text-5xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
@@ -389,6 +486,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                 <nav className="space-y-1.5 text-xs">
                   {[
                     ...article.tableOfContents,
+                    { id: 'clean-defined-url-and-citations', title: 'Clean Defined URL & Citations' },
                     { id: 'verified-sources-and-links', title: 'Verified Sources & Links' }
                   ].map((toc, index) => {
                     const isActive = activeTocId === toc.id;
@@ -454,6 +552,55 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                 >
                   <span>Explore our hypercars showroom</span>
                   <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              {/* Defined Clean URL Sidebar Card */}
+              <div className="p-4 bg-[#090e1a]/90 border border-blue-900/30 rounded-xl space-y-3 font-mono-spec">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-emerald-400 font-semibold uppercase tracking-wider flex items-center gap-1.5 text-[11px]">
+                    <Globe className="w-3.5 h-3.5" /> Defined Clean URL
+                  </span>
+                  <span className="text-[10px] text-slate-500">CANONICAL</span>
+                </div>
+
+                <div className="p-2.5 bg-[#060a14] rounded border border-blue-950/70 text-xs text-slate-300 break-all space-y-1">
+                  <div className="text-[10px] text-slate-500 uppercase">Permalink URI:</div>
+                  <div className="text-emerald-300 font-bold select-all">/{article.slug}</div>
+                  <div className="text-[10px] text-slate-500 truncate pt-0.5">{window.location.origin}/{article.slug}</div>
+                </div>
+
+                <div className="space-y-1.5 text-[11px] text-slate-400">
+                  <div className="flex items-center justify-between">
+                    <span>Index Status:</span>
+                    <span className="text-emerald-400 font-semibold">Indexed</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Clean Routing:</span>
+                    <span className="text-blue-400">RESTful Slug</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleCopyLink}
+                  className={`w-full py-2 px-3 rounded text-xs transition-colors flex items-center justify-center gap-1.5 border font-sans font-semibold ${
+                    copiedLink
+                      ? 'bg-emerald-950/80 border-emerald-500 text-emerald-300'
+                      : 'bg-slate-900 hover:bg-slate-800 border-slate-700 hover:border-emerald-500 text-slate-300 hover:text-white'
+                  }`}
+                >
+                  {copiedLink ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Clean URL Copied</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Copy Defined URL</span>
+                    </>
+                  )}
                 </button>
               </div>
 
@@ -759,6 +906,92 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
               </div>
             </section>
 
+            {/* CLEAN DEFINED URL & CITATION PERMALINK SECTION */}
+            <section
+              id="clean-defined-url-and-citations"
+              className="pt-10 border-t border-blue-900/40 scroll-mt-28 space-y-6"
+            >
+              <div>
+                <div className="flex items-center gap-2 text-xs font-mono-spec text-emerald-400 uppercase tracking-widest mb-2 font-semibold">
+                  <Globe className="w-4 h-4 text-emerald-400" />
+                  Canonical Architecture & Permanent Web Identifier
+                </div>
+                <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
+                  Clean Defined URL & Permalink Citation
+                </h2>
+                <p className="text-sm text-slate-400 max-w-3xl leading-relaxed">
+                  Every editorial on Midnight Motors adheres to immutable, search-engine-optimized, human-readable clean URLs. Use these defined permalinks for canonical citations, research syndication, and bookmarking.
+                </p>
+              </div>
+
+              <div className="p-5 sm:p-6 bg-[#090e1a] border border-blue-900/40 rounded-xl space-y-5">
+                {/* Clean URL Row */}
+                <div>
+                  <div className="flex items-center justify-between text-xs font-mono-spec text-slate-400 mb-2">
+                    <span className="font-semibold uppercase tracking-wider text-blue-400 flex items-center gap-1.5">
+                      <Link2 className="w-3.5 h-3.5" /> Canonical Web Address (Clean URL)
+                    </span>
+                    <span className="text-emerald-400 font-medium">HTTP 200 · REL="CANONICAL"</span>
+                  </div>
+                  <div className="flex items-center gap-2 p-2.5 sm:p-3 bg-[#060a14] border border-blue-900/40 rounded-lg text-xs font-mono-spec">
+                    <span className="text-emerald-400 font-bold shrink-0">GET</span>
+                    <span className="text-slate-300 truncate flex-1 select-all font-mono">
+                      {window.location.origin}/{article.slug}
+                    </span>
+                    <button
+                      onClick={handleCopyLink}
+                      className="px-3 py-1.5 rounded bg-blue-600 hover:bg-blue-500 text-white font-medium shrink-0 transition-colors flex items-center gap-1.5 shadow-sm"
+                      title="Copy full clean URL"
+                    >
+                      {copiedLink ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-white" />
+                          <span>Copied</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>Copy Clean URL</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Additional Defined Formats Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs font-mono-spec">
+                  <div className="p-3 bg-[#060a14] border border-blue-900/20 rounded-lg space-y-1">
+                    <span className="text-[10px] text-slate-500 uppercase block">Defined Primary Path</span>
+                    <div className="text-white font-bold select-all">/{article.slug}</div>
+                    <span className="text-[11px] text-slate-400 block">Direct root slug routing</span>
+                  </div>
+
+                  <div className="p-3 bg-[#060a14] border border-blue-900/20 rounded-lg space-y-1">
+                    <span className="text-[10px] text-slate-500 uppercase block">Defined Blog Alias</span>
+                    <div className="text-white font-bold select-all">/blog/{article.slug}</div>
+                    <span className="text-[11px] text-slate-400 block">Standard RSS / blog taxonomy</span>
+                  </div>
+
+                  <div className="p-3 bg-[#060a14] border border-blue-900/20 rounded-lg space-y-1">
+                    <span className="text-[10px] text-slate-500 uppercase block">Structured Citation</span>
+                    <button
+                      onClick={() => {
+                        const citation = `Sterling, J. (2026). "${article.title}". Midnight Motors. ${window.location.origin}/${article.slug}`;
+                        navigator.clipboard.writeText(citation);
+                        setCopiedCitation(true);
+                        setTimeout(() => setCopiedCitation(false), 2000);
+                      }}
+                      className="text-sky-400 hover:text-white transition-colors flex items-center gap-1 text-left"
+                    >
+                      <span>{copiedCitation ? 'Citation Copied!' : 'Copy APA Citation'}</span>
+                      {copiedCitation ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                    </button>
+                    <span className="text-[11px] text-slate-400 block">Press to copy citation format</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
             {/* VERIFIED PRIMARY AUTHORITIES (OUTBOUND LINKS) & ARCHITECTURAL INWARD LINKS SECTION */}
             <section
               id="verified-sources-and-links"
@@ -861,32 +1094,54 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                         <p className="text-xs text-slate-400 leading-relaxed mb-3">
                           {inLink.context}
                         </p>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            if (inLink.path === '#dream-garage') {
-                              onOpenGarage?.();
-                            } else if (inLink.path === '#showroom') {
-                              if (onSelectCategory) {
-                                onSelectCategory('All');
-                              } else {
-                                onNavigateHome();
-                              }
-                            } else if (inLink.path === '/keyword-research') {
-                              if (onOpenKeywordResearch) {
-                                onOpenKeywordResearch();
-                              } else {
-                                window.location.assign('/keyword-research');
-                              }
-                            } else if (inLink.path.startsWith('/')) {
-                              onSelectArticle(inLink.path.replace(/^\//, ''));
-                            }
-                          }}
-                          className="inline-flex items-center gap-1.5 text-xs font-mono-spec text-sky-400 hover:text-white transition-colors"
-                        >
-                          <span>"{inLink.anchorText}"</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
+                        <div className="flex items-center justify-between gap-2 pt-1 border-t border-blue-950/60">
+                          {inLink.path.startsWith('/') ? (
+                            <a
+                              href={inLink.path}
+                              onClick={(e) => {
+                                if (!e.metaKey && !e.ctrlKey) {
+                                  e.preventDefault();
+                                  if (inLink.path === '/keyword-research') {
+                                    if (onOpenKeywordResearch) {
+                                      onOpenKeywordResearch();
+                                    } else {
+                                      window.location.assign('/keyword-research');
+                                    }
+                                  } else {
+                                    onSelectArticle(inLink.path.replace(/^\//, ''));
+                                  }
+                                }
+                              }}
+                              className="inline-flex items-center gap-1.5 text-xs font-mono-spec text-sky-400 hover:text-white transition-colors"
+                              title={`Visit clean URL: ${inLink.path}`}
+                            >
+                              <span>"{inLink.anchorText}"</span>
+                              <ArrowRight className="w-3.5 h-3.5" />
+                            </a>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (inLink.path === '#dream-garage') {
+                                  onOpenGarage?.();
+                                } else if (inLink.path === '#showroom') {
+                                  if (onSelectCategory) {
+                                    onSelectCategory('All');
+                                  } else {
+                                    onNavigateHome();
+                                  }
+                                }
+                              }}
+                              className="inline-flex items-center gap-1.5 text-xs font-mono-spec text-sky-400 hover:text-white transition-colors"
+                            >
+                              <span>"{inLink.anchorText}"</span>
+                              <ArrowRight className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+                          <span className="text-[10px] font-mono-spec text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/40">
+                            {inLink.path}
+                          </span>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -894,24 +1149,28 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
               </div>
             </section>
 
-            {/* RELATED POSTS SECTION WITH KEYWORD-RICH ANCHORS */}
+            {/* RELATED POSTS SECTION WITH KEYWORD-RICH ANCHORS & CLEAN DEFINED URLS */}
             {relatedArticles.length > 0 && (
               <section className="pt-12 border-t border-blue-900/40">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
                   <div>
                     <span className="text-xs font-mono-spec text-blue-400 uppercase tracking-widest font-semibold block mb-1">
-                      Continue Reading
+                      Continue Reading · Clean Permalinks
                     </span>
                     <h3 className="font-display text-2xl font-bold text-white">
                       Related Automotive Editorials
                     </h3>
                   </div>
-                  <button
-                    onClick={onNavigateHome}
+                  <a
+                    href="/"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigateHome();
+                    }}
                     className="text-xs text-blue-400 hover:text-white font-mono-spec uppercase tracking-wider flex items-center gap-1 transition-colors"
                   >
                     Explore our hypercars showroom and collections →
-                  </button>
+                  </a>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -924,10 +1183,16 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                         : 'Discover our luxury motorcycles showcase';
 
                     return (
-                      <div
+                      <a
                         key={rel.id}
-                        onClick={() => onSelectArticle(rel.slug)}
-                        className="group cursor-pointer bg-[#090e1a] border border-blue-900/30 hover:border-blue-500/50 rounded-xl overflow-hidden transition-all duration-300 shadow-md shadow-black/40 hover:-translate-y-1"
+                        href={`/${rel.slug}`}
+                        onClick={(e) => {
+                          if (!e.metaKey && !e.ctrlKey) {
+                            e.preventDefault();
+                            onSelectArticle(rel.slug);
+                          }
+                        }}
+                        className="group block bg-[#090e1a] border border-blue-900/30 hover:border-blue-500/50 rounded-xl overflow-hidden transition-all duration-300 shadow-md shadow-black/40 hover:-translate-y-1"
                       >
                         <div className="aspect-[16/10] overflow-hidden bg-slate-900">
                           <img
@@ -940,9 +1205,14 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                           />
                         </div>
                         <div className="p-4">
-                          <span className="text-[11px] font-mono-spec text-blue-400 uppercase block mb-1">
-                            {rel.category}
-                          </span>
+                          <div className="flex items-center justify-between gap-2 mb-1">
+                            <span className="text-[11px] font-mono-spec text-blue-400 uppercase">
+                              {rel.category}
+                            </span>
+                            <span className="text-[10px] font-mono-spec px-1.5 py-0.5 rounded bg-blue-950/80 text-emerald-400 border border-emerald-800/40">
+                              /{rel.slug}
+                            </span>
+                          </div>
                           <h4 className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors line-clamp-2 mb-3">
                             {rel.title}
                           </h4>
@@ -950,7 +1220,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                             {descriptiveLinkText} <ArrowRight className="w-3.5 h-3.5" />
                           </span>
                         </div>
-                      </div>
+                      </a>
                     );
                   })}
                 </div>

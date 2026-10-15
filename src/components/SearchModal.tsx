@@ -136,13 +136,18 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             </div>
           ) : (
             filteredArticles.map(art => (
-              <div
+              <a
                 key={art.id}
-                onClick={() => {
-                  onSelectArticle(art.slug);
-                  onClose();
+                href={`/${art.slug}`}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey) {
+                    e.preventDefault();
+                    onSelectArticle(art.slug);
+                    onClose();
+                  }
                 }}
                 className="group flex items-start gap-3.5 p-3 rounded-lg hover:bg-blue-950/40 cursor-pointer transition-all border border-transparent hover:border-blue-800/30"
+                title={`Visit clean URL: /${art.slug}`}
               >
                 <img
                   src={art.heroImage}
@@ -153,12 +158,17 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   loading="lazy"
                 />
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 text-[11px] text-blue-400 font-mono-spec mb-0.5">
-                    <span>{art.category}</span>
-                    <span aria-hidden="true">·</span>
-                    <span className="flex items-center gap-1 text-slate-400">
-                      <Clock className="w-3 h-3" />
-                      {art.readTime}
+                  <div className="flex items-center justify-between text-[11px] text-blue-400 font-mono-spec mb-0.5">
+                    <div className="flex items-center gap-2">
+                      <span>{art.category}</span>
+                      <span aria-hidden="true">·</span>
+                      <span className="flex items-center gap-1 text-slate-400">
+                        <Clock className="w-3 h-3" />
+                        {art.readTime}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/40">
+                      /{art.slug}
                     </span>
                   </div>
                   <h4 className="text-sm font-semibold text-white group-hover:text-blue-300 line-clamp-1 transition-colors">
@@ -169,7 +179,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   </p>
                 </div>
                 <ArrowRight className="w-4 h-4 text-slate-600 group-hover:text-blue-400 group-hover:translate-x-1 transition-all shrink-0 mt-2" />
-              </div>
+              </a>
             ))
           )}
         </div>

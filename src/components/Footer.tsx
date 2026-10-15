@@ -105,28 +105,52 @@ export const Footer: React.FC<FooterProps> = ({
             </h5>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <button
-                  onClick={() => onSelectArticle('what-is-a-hypercar')}
-                  className="hover:text-blue-300 transition-colors text-left"
+                <a
+                  href="/what-is-a-hypercar"
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey) {
+                      e.preventDefault();
+                      onSelectArticle('what-is-a-hypercar');
+                    }
+                  }}
+                  className="hover:text-blue-300 transition-colors text-left flex items-center justify-between group"
+                  title="Clean URL: /what-is-a-hypercar"
                 >
-                  Read what makes a hypercar different
-                </button>
+                  <span>Read what makes a hypercar different</span>
+                  <span className="font-mono-spec text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors">/what-is-a-hypercar</span>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onSelectArticle('best-classic-cars-to-invest-in')}
-                  className="hover:text-blue-300 transition-colors text-left"
+                <a
+                  href="/best-classic-cars-to-invest-in"
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey) {
+                      e.preventDefault();
+                      onSelectArticle('best-classic-cars-to-invest-in');
+                    }
+                  }}
+                  className="hover:text-blue-300 transition-colors text-left flex items-center justify-between group"
+                  title="Clean URL: /best-classic-cars-to-invest-in"
                 >
-                  Explore the best classic cars to invest in guide
-                </button>
+                  <span>Explore the best classic cars to invest in guide</span>
+                  <span className="font-mono-spec text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors">/best-classic-cars-to-invest-in</span>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onSelectArticle('luxury-motorcycles')}
-                  className="hover:text-blue-300 transition-colors text-left"
+                <a
+                  href="/luxury-motorcycles"
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey) {
+                      e.preventDefault();
+                      onSelectArticle('luxury-motorcycles');
+                    }
+                  }}
+                  className="hover:text-blue-300 transition-colors text-left flex items-center justify-between group"
+                  title="Clean URL: /luxury-motorcycles"
                 >
-                  Discover our luxury motorcycles showcase
-                </button>
+                  <span>Discover our luxury motorcycles showcase</span>
+                  <span className="font-mono-spec text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors">/luxury-motorcycles</span>
+                </a>
               </li>
               <li>
                 <a

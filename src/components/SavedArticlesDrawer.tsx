@@ -87,18 +87,27 @@ export const SavedArticlesDrawer: React.FC<SavedArticlesDrawerProps> = ({
                 />
                 <div className="flex-1 min-w-0 flex flex-col justify-between">
                   <div>
-                    <span className="text-[10px] font-mono-spec text-blue-400 uppercase tracking-wider block">
-                      {art.category}
-                    </span>
-                    <h4
-                      onClick={() => {
-                        onSelectArticle(art.slug);
-                        onClose();
+                    <div className="flex items-center justify-between gap-1 mb-0.5">
+                      <span className="text-[10px] font-mono-spec text-blue-400 uppercase tracking-wider block">
+                        {art.category}
+                      </span>
+                      <span className="text-[9px] font-mono-spec text-emerald-400 bg-emerald-950/60 px-1 py-0.2 rounded border border-emerald-800/40">
+                        /{art.slug}
+                      </span>
+                    </div>
+                    <a
+                      href={`/${art.slug}`}
+                      onClick={(e) => {
+                        if (!e.metaKey && !e.ctrlKey) {
+                          e.preventDefault();
+                          onSelectArticle(art.slug);
+                          onClose();
+                        }
                       }}
-                      className="text-xs sm:text-sm font-bold text-white group-hover:text-blue-300 transition-colors line-clamp-2 cursor-pointer mt-0.5"
+                      className="text-xs sm:text-sm font-bold text-white group-hover:text-blue-300 transition-colors line-clamp-2 cursor-pointer mt-0.5 block"
                     >
                       {art.title}
-                    </h4>
+                    </a>
                   </div>
 
                   <div className="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-blue-950/60 font-mono-spec">
