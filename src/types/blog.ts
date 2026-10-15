@@ -67,6 +67,22 @@ export interface TableOfContentItem {
   title: string;
 }
 
+export interface ExternalCitation {
+  title: string;
+  url: string;
+  publisher: string;
+  description: string;
+  type: 'regulatory' | 'manufacturer' | 'auction' | 'motorsport' | 'telemetry';
+}
+
+export interface InternalDeepLink {
+  title: string;
+  path: string;
+  anchorText: string;
+  context: string;
+  badge: string;
+}
+
 export interface BlogArticle {
   id: string;
   slug: string;
@@ -92,6 +108,8 @@ export interface BlogArticle {
   prosAndCons: ProsAndCons;
   faqs: FAQItem[];
   relatedSlugs: string[];
+  inwardLinks?: InternalDeepLink[];
+  outboundLinks?: ExternalCitation[];
   featured?: boolean;
   trendingScore: number;
 }

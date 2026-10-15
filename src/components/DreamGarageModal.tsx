@@ -34,7 +34,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '4.0L Flat-6 · 502 HP · 6-Speed Manual',
         hp: 502,
         valueEstimate: 185000,
-        image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/gt3-touring.jpg',
         type: 'car'
       },
       {
@@ -43,7 +43,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '4.0L Twin-Turbo V8 · 621 HP · Quattro AWD',
         hp: 621,
         valueEstimate: 130000,
-        image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/rs6-avant.jpg',
         type: 'car'
       },
       {
@@ -52,7 +52,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '3.0L Twin-Turbo S58 · 543 HP · M xDrive',
         hp: 543,
         valueEstimate: 119000,
-        image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/bmw-m3-cs.jpg',
         type: 'car'
       }
     ]
@@ -68,7 +68,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '2.6L RB26DETT N1 · 330 HP (Actual) · ATTESA AWD',
         hp: 330,
         valueEstimate: 380000,
-        image: 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/skyline-r34.jpg',
         type: 'car'
       },
       {
@@ -77,7 +77,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '3.0L 2JZ-GTE · 320 HP · Getrag 6-Speed',
         hp: 320,
         valueEstimate: 150000,
-        image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/supra-mk4.jpg',
         type: 'car'
       },
       {
@@ -86,7 +86,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '1.3L 13B-REW Twin-Rotor · 276 HP · 50:50 Balance',
         hp: 276,
         valueEstimate: 140000,
-        image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/rx7-spirit-r.jpg',
         type: 'car'
       }
     ]
@@ -102,7 +102,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '3.0L Colombo V12 · 296 HP · Scaglietti Aluminum',
         hp: 296,
         valueEstimate: 70000000,
-        image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/ferrari-250-gto.jpg',
         type: 'car'
       },
       {
@@ -111,7 +111,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '2.9L Twin-Turbo V8 · 471 HP · Kevlar Body',
         hp: 471,
         valueEstimate: 3200000,
-        image: 'https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/ferrari-f40.jpg',
         type: 'car'
       },
       {
@@ -120,7 +120,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '2.85L Sequential Biturbo · 444 HP · PSK AWD',
         hp: 444,
         valueEstimate: 2100000,
-        image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/porsche-959.jpg',
         type: 'car'
       }
     ]
@@ -136,7 +136,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '4.0L Flat-6 · 518 HP · 860 kg Downforce',
         hp: 518,
         valueEstimate: 320000,
-        image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/gt3-rs.jpg',
         type: 'car'
       },
       {
@@ -145,7 +145,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '3.0L Twin-Turbo V6 Hybrid · 819 HP · Multimatic Dampers',
         hp: 819,
         valueEstimate: 380000,
-        image: 'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/ferrari-296.jpg',
         type: 'car'
       }
     ]
@@ -161,7 +161,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '6.1L BMW S70/2 V12 · 618 HP · 240.1 MPH Record',
         hp: 618,
         valueEstimate: 22000000,
-        image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/mclaren-f1.jpg',
         type: 'car'
       },
       {
@@ -170,7 +170,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '5.0L Twin-Turbo V8 · 1,600 HP on E85 · 9-Speed LST',
         hp: 1600,
         valueEstimate: 3600000,
-        image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/koenigsegg-jesko.jpg',
         type: 'car'
       },
       {
@@ -179,7 +179,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '8.0L Quad-Turbo W16 · 1,578 HP · 304.77 MPH',
         hp: 1578,
         valueEstimate: 4200000,
-        image: 'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/bugatti-chiron.jpg',
         type: 'car'
       }
     ]
@@ -195,7 +195,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '1,103cc Desmosedici Stradale V4 · 215.5 HP · Carbon Rims',
         hp: 215,
         valueEstimate: 40500,
-        image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/ducati-v4-sp2.jpg',
         type: 'bike'
       },
       {
@@ -204,7 +204,7 @@ const GARAGE_SLOTS: GarageSlot[] = [
         specs: '998cc Supercharged Inline-4 · 310 HP · Carbon Winglets',
         hp: 310,
         valueEstimate: 57000,
-        image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=600&q=80',
+        image: '/cars/kawasaki-h2r.jpg',
         type: 'bike'
       }
     ]

@@ -20,8 +20,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
     relatedKeywords: ['hypercar vs supercar', 'fastest hypercars in the world'],
     category: 'Hypercars',
     vehicleType: 'cars',
-    heroImage:
-      'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80',
+    heroImage: '/cars/koenigsegg-jesko.jpg',
     heroImageAlt:
       'Koenigsegg Jesko hypercar on track in the Midnight Motors hypercars showroom collection',
     heroImageCaption:
@@ -58,8 +57,8 @@ export const ARTICLES_DATA: BlogArticle[] = [
         heading: 'What is a Hypercar in Modern Automotive Engineering?',
         subheading: 'Beyond the Supercar: The 1,000+ Horsepower Threshold',
         body: [
-          'If you have ever asked what is a hypercar, the answer lies far beyond mere straight-line speed. A hypercar is an ultra-exclusive category of road-legal kinetic art engineered with aerospace pre-preg carbon fiber, producing in excess of 1,000 horsepower, and built in strictly limited runs rarely exceeding a few dozen vehicles globally.',
-          'While traditional performance cars roll off industrialized assembly lines, hypercars are handcrafted to order in sanitary skunkworks hangars. When evaluating hypercar vs supercar boundaries, the distinction comes down to compromise: supercars accommodate daily road regulations and mass manufacturing budgets, whereas the fastest hypercars in the world rewrite physical limits with bespoke transmissions, active aero morphing, and multi-million-dollar price tags.'
+          'If you have ever asked what is a hypercar, the answer lies far beyond mere straight-line speed. A hypercar is an ultra-exclusive category of road-legal kinetic art engineered with aerospace pre-preg carbon fiber, producing in excess of 1,000 horsepower, and built in strictly limited runs rarely exceeding a few dozen vehicles globally. To understand regulatory homologation benchmarks, consult the [FIA World Endurance Championship LMH regulations](https://www.fia.com).',
+          'While traditional performance cars roll off industrialized assembly lines, hypercars are handcrafted to order in sanitary skunkworks hangars. When evaluating hypercar vs supercar boundaries, the distinction comes down to compromise: supercars accommodate daily road regulations and mass manufacturing budgets, whereas the fastest hypercars in the world rewrite physical limits with bespoke transmissions, active aero morphing, and multi-million-dollar price tags. You can test your curation instincts and [configure your 6-slot Dream Garage Vault](#dream-garage) with our interactive collector tool.'
         ]
       },
       {
@@ -68,7 +67,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         subheading: 'AEO Direct Breakdown: Rarity, Metallurgy, and Computational Power',
         body: [
           'What fundamentally separates a hypercar from a high-end supercar? A hypercar is defined by production exclusivity (usually under 150 units globally), four-figure horsepower ratings, bespoke autoclave-cured carbon monocoques, and valuations surpassing $2.5 million USD. In contrast, modern supercars like the Ferrari 296 GTB or Porsche 911 Turbo S are series-produced with computer-assisted daily comfort, cost roughly $250,000 to $400,000, and generate between 600 and 820 horsepower.',
-          'To understand the nuance, compare our curated showroom collection. You can explore our hypercars showroom to view vehicles where every titanium bolt is drilled for gram-level weight savings, or view our best classic cars to invest in guide to see how historic pedigree influences modern halo pricing.'
+          'To understand the nuance, compare our curated showroom collection. You can [explore our hypercars showroom](#showroom) to view vehicles where every titanium bolt is drilled for gram-level weight savings, or view our [best classic cars to invest in guide](/best-classic-cars-to-invest-in) to see how historic pedigree influences modern halo pricing. For comparative analysis across search intents, explore our [AEO keyword research intelligence matrix](/keyword-research).'
         ],
         callout: {
           quote:
@@ -82,8 +81,8 @@ export const ARTICLES_DATA: BlogArticle[] = [
         heading: 'What Are the Fastest Hypercars in the World Today?',
         subheading: 'The 300 MPH Club: Molsheim vs Ängelholm',
         body: [
-          'Which vehicles currently reign as the fastest hypercars in the world? The Bugatti Chiron Super Sport 300+ holds the verified production prototype milestone of 304.77 mph (490.48 km/h), while the Koenigsegg Jesko Absolut is aerodynamically configured for a calculated velocity exceeding 310 mph on renewable E85 fuel. Both machines utilize active downforce management and specialized Michelin compound tyres engineered to withstand over 5,000 times gravity in centrifugal loading.',
-          'Alongside these internal-combustion marvels stands the Croatian Rimac Nevera, proving that instant quad-motor electric torque can dispatch the quarter-mile in 8.2 seconds while recalculating wheel power 100 times per second.'
+          'Which vehicles currently reign as the fastest hypercars in the world? The Bugatti Chiron Super Sport 300+ holds the verified production prototype milestone of 304.77 mph (490.48 km/h), corroborated by [Guinness World Records production vehicle speed verification](https://www.guinnessworldrecords.com), while the Koenigsegg Jesko Absolut is aerodynamically configured for a calculated velocity exceeding 310 mph on renewable E85 fuel. Both machines utilize active downforce management and specialized Michelin compound tyres engineered to withstand over 5,000 times gravity in centrifugal loading.',
+          'Alongside these internal-combustion marvels stands the Croatian Rimac Nevera, proving that instant quad-motor electric torque can dispatch the quarter-mile in 8.2 seconds while recalculating wheel power 100 times per second. For extreme two-wheeled acceleration parallels, examine our [luxury motorcycles showcase](/luxury-motorcycles).'
         ],
         specTable: [
           { label: 'Core Category Benchmark', value: 'What is a hypercar standard: 1,000+ HP' },
@@ -97,7 +96,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         heading: 'How Did the Bugatti Chiron Reach 304.77 MPH?',
         subheading: 'Quad-Turbo W16 Engineering and 25cm Longtail Aerodynamics',
         body: [
-          'When Le Mans champion Andy Wallace steered the Chiron Super Sport 300+ past 304.77 mph on the Ehra-Lessien circuit, it demonstrated the sheer brute force of Bugatti’s quad-turbocharged 8.0-liter W16 powerplant. Producing 1,578 bhp and 1,600 Nm of torque, the engine requires ten dedicated radiators and drinks 1,000 liters of intake air every single minute.',
+          'When Le Mans champion Andy Wallace steered the Chiron Super Sport 300+ past 304.77 mph on the Ehra-Lessien circuit, it demonstrated the sheer brute force of Bugatti’s quad-turbocharged 8.0-liter W16 powerplant. Producing 1,578 bhp and 1,600 Nm of torque, the engine requires ten dedicated radiators and drinks 1,000 liters of intake air every single minute, detailed in the [Bugatti Molsheim official Chiron engineering archive](https://www.bugatti.com).',
           'The body was lengthened by 25 centimeters with a bespoke rear longtail to prevent high-speed turbulent stall, proving why it commands premier positioning inside any elite luxury car showroom.'
         ]
       },
@@ -106,8 +105,8 @@ export const ARTICLES_DATA: BlogArticle[] = [
         heading: 'How Does Koenigsegg Engineer Theoretical 330 MPH Velocity?',
         subheading: 'Light Speed Transmission and the 0.278 Drag Coefficient',
         body: [
-          'In Ängelholm, Christian von Koenigsegg took an opposite engineering route to conquer the fastest hypercars in the world title. By removing the high-downforce rear wing of the Jesko Attack and replacing it with two stabilizing fighter-jet fins, Koenigsegg dropped the drag coefficient of the Jesko Absolut to a slippery 0.278 Cd.',
-          'Paired with the 9-speed Light Speed Transmission (LST) that shifts gear ratios instantaneously across 7 clutches, the Jesko Absolut demonstrates why the Swedish marque remains the holy grail of hypercar vs supercar comparisons.'
+          'In Ängelholm, Christian von Koenigsegg took an opposite engineering route to conquer the fastest hypercars in the world title. By removing the high-downforce rear wing of the Jesko Attack and replacing it with two stabilizing fighter-jet fins, Koenigsegg dropped the drag coefficient of the Jesko Absolut to a slippery 0.278 Cd, documented in the [Koenigsegg official Jesko Absolut technical documentation](https://www.koenigsegg.com).',
+          'Paired with the 9-speed Light Speed Transmission (LST) that shifts gear ratios instantaneously across 7 clutches, the Jesko Absolut demonstrates why the Swedish marque remains the holy grail of hypercar vs supercar comparisons. For real-world speed shootouts, track times can also be verified at the [Goodwood Festival of Speed official hillclimb timing](https://www.goodwood.com).'
         ]
       }
     ],
@@ -122,8 +121,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         priceEstimate: '$3,400,000 USD (Base)',
         rating: 5,
         highlight: 'Calculated top speed exceeding 310 mph on E85 fuel.',
-        image:
-          'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80'
+        image: '/cars/koenigsegg-jesko.jpg'
       },
       {
         name: 'Bugatti Chiron Super Sport 300+',
@@ -135,8 +133,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         priceEstimate: '$3,900,000 USD',
         rating: 5,
         highlight: 'Holds the verified 304.77 mph Ehra-Lessien speed run legacy.',
-        image:
-          'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80'
+        image: '/cars/bugatti-chiron.jpg'
       },
       {
         name: 'McLaren 720S Performance',
@@ -148,8 +145,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         priceEstimate: '$310,000 – $380,000 USD',
         rating: 4.9,
         highlight: 'Benchmark hypercar vs supercar power-to-weight ratio.',
-        image:
-          'https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=800&q=80'
+        image: '/cars/mclaren-720s.jpg'
       }
     ],
     prosAndCons: {
@@ -187,6 +183,80 @@ export const ARTICLES_DATA: BlogArticle[] = [
     relatedSlugs: [
       'best-classic-cars-to-invest-in',
       'luxury-motorcycles'
+    ],
+    inwardLinks: [
+      {
+        title: 'Explore Hypercars Showroom Collection',
+        path: '#showroom',
+        anchorText: 'explore our hypercars showroom',
+        context: 'Direct access to physical and digital exotic hypercars showroom floor',
+        badge: 'Showroom'
+      },
+      {
+        title: 'Blue-Chip Classic Car Investment Guide',
+        path: '/best-classic-cars-to-invest-in',
+        anchorText: 'best classic cars to invest in guide',
+        context: 'Deep dive into heritage valuation and analog icon appreciation',
+        badge: 'Cornerstone Guide'
+      },
+      {
+        title: 'Luxury Motorcycles & Superbikes Collection',
+        path: '/luxury-motorcycles',
+        anchorText: 'luxury motorcycles showcase',
+        context: '1,200 hp/ton two-wheeled acceleration and track telemetry',
+        badge: 'Cornerstone Guide'
+      },
+      {
+        title: 'Interactive 6-Slot Dream Garage Vault',
+        path: '#dream-garage',
+        anchorText: 'configure your 6-slot Dream Garage Vault',
+        context: 'Interactive collector garage builder with real-time valuation ticker',
+        badge: 'Interactive Tool'
+      },
+      {
+        title: 'AEO Keyword Research & Intent Matrix',
+        path: '/keyword-research',
+        anchorText: 'AEO keyword research intelligence matrix',
+        context: 'Search volume, KD, and structured query optimization audit',
+        badge: 'SEO Intelligence'
+      }
+    ],
+    outboundLinks: [
+      {
+        title: 'FIA Hypercar LMH Technical Regulations',
+        url: 'https://www.fia.com',
+        publisher: 'Fédération Internationale de l’Automobile (FIA)',
+        description: 'Official governing body motorsport regulations and aerodynamic downforce homologation guidelines.',
+        type: 'regulatory'
+      },
+      {
+        title: 'Guinness World Records Speed Verification Standards',
+        url: 'https://www.guinnessworldrecords.com',
+        publisher: 'Guinness World Records Ltd',
+        description: 'Verified production car land speed record methodology requiring bi-directional two-way average runs.',
+        type: 'telemetry'
+      },
+      {
+        title: 'Bugatti Chiron 304.77 MPH Engineering Whitepaper',
+        url: 'https://www.bugatti.com',
+        publisher: 'Bugatti Automobiles S.A.S.',
+        description: 'Official factory engineering documentation for the quad-turbo 8.0-liter W16 powertrain and longtail bodywork.',
+        type: 'manufacturer'
+      },
+      {
+        title: 'Koenigsegg Jesko Absolut Aerodynamics Report',
+        url: 'https://www.koenigsegg.com',
+        publisher: 'Koenigsegg Automotive AB',
+        description: 'CFD simulation data on the 0.278 Cd drag coefficient and Light Speed Transmission (LST) architecture.',
+        type: 'manufacturer'
+      },
+      {
+        title: 'Goodwood Festival of Speed Hillclimb Timing Database',
+        url: 'https://www.goodwood.com',
+        publisher: 'Goodwood Road & Racing Club',
+        description: 'Verified live telemetry and official timed shootout results from the annual Lord March hillclimb.',
+        type: 'motorsport'
+      }
     ]
   },
   {
@@ -208,8 +278,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
     relatedKeywords: ['exotic classic cars', 'vintage car collection'],
     category: 'Classics & Heritage',
     vehicleType: 'cars',
-    heroImage:
-      'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1200&q=80',
+    heroImage: '/cars/ferrari-250-gto.jpg',
     heroImageAlt:
       'Classic Ferrari 250 GTO vintage car collection highlight for the best classic cars to invest in',
     heroImageCaption:
@@ -244,8 +313,8 @@ export const ARTICLES_DATA: BlogArticle[] = [
         heading: 'Why Are Classic Cars Considered Prime Investment Assets?',
         subheading: 'Tangible Mechanical Art Outperforming Traditional Financial Indices',
         body: [
-          'Selecting the best classic cars to invest in has transitioned from a passionate hobby into a sophisticated alternative wealth management strategy. Over the past three decades, premier historic automobiles have consistently demonstrated appreciation curves rivaling fine art, blue-chip equities, and rare watches.',
-          'The core reason lies in finite scarcity: you cannot manufacture more 1962 Colombo V12 sports racers. When high-net-worth connoisseurs seek tangible diversification, acquiring verified exotic classic cars protects purchasing power while providing the irreplaceable sensory joy of turning a physical ignition key.'
+          'Selecting the best classic cars to invest in has transitioned from a passionate hobby into a sophisticated alternative wealth management strategy. Over the past three decades, premier historic automobiles tracked on the [Hagerty Historic Vehicle Valuation Tools](https://www.hagerty.com/valuation-tools) have consistently demonstrated appreciation curves rivaling fine art, blue-chip equities, and rare watches.',
+          'The core reason lies in finite scarcity: you cannot manufacture more 1962 Colombo V12 sports racers. When high-net-worth connoisseurs seek tangible diversification, acquiring verified exotic classic cars protects purchasing power while providing the irreplaceable sensory joy of turning a physical ignition key. You can curate your own historic stable and [lock your vintage picks into the Dream Garage Vault](#dream-garage).'
         ]
       },
       {
@@ -253,8 +322,8 @@ export const ARTICLES_DATA: BlogArticle[] = [
         heading: 'Which Classic Cars Are Worth Investing In Today?',
         subheading: 'AEO Direct Breakdown: Provenance, Pedigree, and Production Caps',
         body: [
-          'Which historic models rank as the best classic cars to invest in for maximum security and capital growth? The most resilient investments are homologated race cars with matching-numbers drivetrains and continuous historical documentation, spearheaded by the Ferrari 250 GTO, the Ferrari F40, the Porsche 959, and the Mercedes-Benz 300 SL Gullwing. In the modern classic sector, 1990s analog icons like the McLaren F1 and Nissan Skyline GT-R R34 V-Spec II are experiencing steep upward valuation trajectories.',
-          'To see how modern hypercars compare with historic legends, explore our hypercars showroom or view our luxury motorcycles guide to examine cross-discipline collector strategies.'
+          'Which historic models rank as the best classic cars to invest in for maximum security and capital growth? The most resilient investments are homologated race cars with matching-numbers drivetrains and continuous historical documentation, spearheaded by the Ferrari 250 GTO, the Ferrari F40, the Porsche 959, and the Mercedes-Benz 300 SL Gullwing. In the modern classic sector, 1990s analog icons like the McLaren F1 and Nissan Skyline GT-R R34 V-Spec II are experiencing steep upward valuation trajectories, frequently breaking sale records at [RM Sotheby’s official auction sales results archive](https://rmsothebys.com).',
+          'To see how modern hypercars compare with historic legends, read our [what is a hypercar comparative analysis](/what-is-a-hypercar), or [explore our vintage car collection showroom](#showroom). For multi-discipline collectors, view our [luxury motorcycles collector investment analysis](/luxury-motorcycles) to balance four-wheel and two-wheel allocations. You can also review our [AEO search strategy & keyword taxonomy](/keyword-research).'
         ],
         callout: {
           quote:
@@ -269,7 +338,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         subheading: '36 Hand-Beaten Aluminum Chassis and Unbroken Racing Dominance',
         body: [
           'No discussion of exotic classic cars is complete without the Ferrari 250 GTO. Handcrafted by Carrozzeria Scaglietti between 1962 and 1964, only 36 examples were produced. Powered by Gioacchino Colombo’s 3.0-liter dry-sump V12 producing 296 horsepower, the GTO dominated the FIA International GT Championship for three consecutive years.',
-          'When Tour de France-winning chassis #4153GT traded hands privately for an astonishing $70 million, it cemented the 250 GTO as the absolute apex asset of any global vintage car collection.'
+          'When Tour de France-winning chassis #4153GT traded hands privately for an astonishing $70 million, it cemented the 250 GTO as the absolute apex asset of any global vintage car collection, registered alongside national heritage treasures on the [National Historic Vehicle Register & Library of Congress](https://www.historicvehicle.org).'
         ]
       },
       {
@@ -286,8 +355,8 @@ export const ARTICLES_DATA: BlogArticle[] = [
         heading: 'How Do You Preserve and Build a Vintage Car Collection?',
         subheading: 'Climate Regulation, Exercise Routines, and Heritage Certification',
         body: [
-          'What is the optimal methodology for building an investment-grade vintage car collection? Professional preservation mandates climate-controlled facilities maintained between 45% and 55% relative humidity, fuel stabilization, trickle battery maintenance, and regular operational exercise every three weeks to prevent seal drying.',
-          'Furthermore, securing official factory authentication—such as Ferrari Classiche or Porsche Classic technical documentation—serves as an ironclad certificate of authenticity that maximizes auction realization.'
+          'What is the optimal methodology for building an investment-grade vintage car collection? Professional preservation adheres to the [FIVA (Fédération Internationale des Véhicules Anciens) Preservation Charter](https://fiva.org), mandating climate-controlled facilities maintained between 45% and 55% relative humidity, fuel stabilization, trickle battery maintenance, and regular operational exercise every three weeks.',
+          'Furthermore, securing official factory authentication—such as the [Ferrari Classiche Heritage Certification](https://www.ferrari.com) or Porsche Classic technical documentation—serves as an ironclad certificate of authenticity that maximizes auction realization.'
         ]
       }
     ],
@@ -302,8 +371,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         priceEstimate: '$50,000,000 – $70,000,000 USD',
         rating: 5,
         highlight: 'Triple FIA GT World Championship provenance and landmark auction benchmark.',
-        image:
-          'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80'
+        image: '/cars/ferrari-250-gto.jpg'
       },
       {
         name: 'Ferrari F40 (Non-Cat Purist)',
@@ -315,8 +383,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         priceEstimate: '$2,800,000 – $3,500,000 USD',
         rating: 5,
         highlight: 'Final road car personally approved by Enzo Ferrari.',
-        image:
-          'https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&w=800&q=80'
+        image: '/cars/ferrari-f40.jpg'
       },
       {
         name: '1973 Porsche 911 Carrera RS 2.7',
@@ -328,8 +395,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         priceEstimate: '$650,000 – $1,200,000 USD',
         rating: 5,
         highlight: 'Benchmark appreciation index for historic air-cooled German sports cars.',
-        image:
-          'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80'
+        image: '/cars/porsche-carrera-rs.jpg'
       }
     ],
     prosAndCons: {
@@ -367,6 +433,80 @@ export const ARTICLES_DATA: BlogArticle[] = [
     relatedSlugs: [
       'what-is-a-hypercar',
       'luxury-motorcycles'
+    ],
+    inwardLinks: [
+      {
+        title: 'Hypercar vs Supercar Engineering Guide',
+        path: '/what-is-a-hypercar',
+        anchorText: 'what is a hypercar comparative analysis',
+        context: 'Direct contrast between modern multi-million hypercars and heritage classics',
+        badge: 'Cornerstone Guide'
+      },
+      {
+        title: 'Vintage & Heritage Showroom Collection',
+        path: '#showroom',
+        anchorText: 'explore our vintage car collection showroom',
+        context: 'Inspect restored homologation sports racers in the showroom gallery',
+        badge: 'Showroom'
+      },
+      {
+        title: 'Collectible Superbikes & Luxury Motorcycles',
+        path: '/luxury-motorcycles',
+        anchorText: 'luxury motorcycles collector investment analysis',
+        context: 'Evaluating two-wheel investment grade appreciation versus vintage cars',
+        badge: 'Cornerstone Guide'
+      },
+      {
+        title: 'Lock Picks in Dream Garage Vault',
+        path: '#dream-garage',
+        anchorText: 'lock your vintage picks into the Dream Garage Vault',
+        context: 'Slot 1960s icons alongside modern hypercars in the interactive builder',
+        badge: 'Interactive Tool'
+      },
+      {
+        title: 'AEO Investment Keyword Analysis',
+        path: '/keyword-research',
+        anchorText: 'AEO search strategy & keyword taxonomy',
+        context: 'High-intent search analytics for classic car collector queries',
+        badge: 'SEO Intelligence'
+      }
+    ],
+    outboundLinks: [
+      {
+        title: 'Hagerty Historic Vehicle Valuation Tools',
+        url: 'https://www.hagerty.com/valuation-tools',
+        publisher: 'Hagerty Inc.',
+        description: 'Industry-standard classic car price guides, public auction indices, and blue-chip market reports.',
+        type: 'auction'
+      },
+      {
+        title: 'RM Sotheby’s Official Auction Archive',
+        url: 'https://rmsothebys.com',
+        publisher: 'RM Sotheby’s',
+        description: 'Historical auction catalog sales, hammer prices, and verified chassis provenance records.',
+        type: 'auction'
+      },
+      {
+        title: 'FIVA Historic Vehicle Preservation Charter',
+        url: 'https://fiva.org',
+        publisher: 'Fédération Internationale des Véhicules Anciens (FIVA)',
+        description: 'Global standard for the preservation, conservation, and historical authenticity of road vehicles.',
+        type: 'regulatory'
+      },
+      {
+        title: 'Ferrari Classiche Certification Program',
+        url: 'https://www.ferrari.com',
+        publisher: 'Ferrari S.p.A.',
+        description: 'Maranello official heritage department verification for matching engine numbers, chassis, and bodywork.',
+        type: 'manufacturer'
+      },
+      {
+        title: 'National Historic Vehicle Register & Library of Congress',
+        url: 'https://www.historicvehicle.org',
+        publisher: 'Historic Vehicle Association (HVA)',
+        description: 'Permanent archival documentation of culturally significant automobiles deposited in the U.S. Library of Congress.',
+        type: 'regulatory'
+      }
     ]
   },
   {
@@ -388,8 +528,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
     relatedKeywords: ['superbikes collection', 'best luxury bikes in the world'],
     category: 'Superbikes',
     vehicleType: 'bikes',
-    heroImage:
-      'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1200&q=80',
+    heroImage: '/cars/ducati-v4-sp2.jpg',
     heroImageAlt:
       'Ducati Panigale V4 SP2 luxury motorcycles showcase from our superbikes collection',
     heroImageCaption:
@@ -424,8 +563,8 @@ export const ARTICLES_DATA: BlogArticle[] = [
         heading: 'What Defines Modern Luxury Motorcycles and Exotic Machinery?',
         subheading: 'Aerospace Metallurgy, Dry Slipper Clutches, and MotoGP Electronics',
         body: [
-          'The realm of luxury motorcycles represents the ultimate fusion of unfiltered kinetic adrenaline and bespoke mechanical craft. Unlike mass-market commuters, high-end superbikes are constructed with billet aircraft aluminum, full carbon-fiber structural fairings, and precision titanium exhaust systems tuned for acoustic resonance.',
-          'Discerning collectors recognize that adding elite two-wheeled icons to a luxury car showroom creates an unrivaled sensory portfolio. With dry slipper clutches rattling in pit lanes and 16,000 RPM engines howling down the straights, our superbikes collection showcases the pinnacle of human balance and engineering bravery.'
+          'The realm of luxury motorcycles represents the ultimate fusion of unfiltered kinetic adrenaline and bespoke mechanical craft. Unlike mass-market commuters, high-end superbikes are constructed with billet aircraft aluminum, full carbon-fiber structural fairings, and precision titanium exhaust systems tuned for acoustic resonance, regulated under the [FIM WorldSBK Technical Regulations](https://www.fim-moto.com).',
+          'Discerning collectors recognize that adding elite two-wheeled icons to a luxury car showroom creates an unrivaled sensory portfolio. With dry slipper clutches rattling in pit lanes and 16,000 RPM engines howling down the straights, our superbikes collection showcases the pinnacle of human balance and engineering bravery. You can curate your dream lineup and [assemble your ultimate superbike in the Dream Garage Vault](#dream-garage).'
         ]
       },
       {
@@ -433,8 +572,8 @@ export const ARTICLES_DATA: BlogArticle[] = [
         heading: 'What Are the Best Luxury Bikes in the World for Track and Collectors?',
         subheading: 'AEO Direct Breakdown: Ducati Panigale, Bimota Tesi, and Kawasaki H2R',
         body: [
-          'What are the best luxury bikes in the world for collectors and track day enthusiasts? The benchmark lineup is led by the Ducati Panigale V4 SP2 with its 1,103cc Desmosedici Stradale V4 and carbon-fiber wheels, the supercharged 310-horsepower Kawasaki Ninja H2R track monster, the hub-steered Bimota Tesi H2, and the hand-finished MV Agusta Superveloce 1000 Serie Oro. These machines deliver power-to-weight ratios that eclipse four-wheeled hypercars while offering jewelry-grade aesthetic finishes.',
-          'To understand how two-wheeled performance fits into a broader garage plan, read what is a hypercar to compare aerodynamic downforce, or explore our best classic cars to invest in guide for portfolio balance.'
+          'What are the best luxury bikes in the world for collectors and track day enthusiasts? The benchmark lineup is led by the Ducati Panigale V4 SP2 with its 1,103cc Desmosedici Stradale V4 and carbon-fiber wheels, the supercharged 310-horsepower Kawasaki Ninja H2R track monster, the hub-steered Bimota Tesi H2 (engineered per the [Bimota Historic Tesi Chassis Engineering Archive](https://bimota.it)), and the hand-finished MV Agusta Superveloce 1000 Serie Oro. These machines deliver power-to-weight ratios that eclipse four-wheeled hypercars while offering jewelry-grade aesthetic finishes.',
+          'To understand how two-wheeled performance fits into a broader garage plan, read our [what is a hypercar to compare aerodynamic downforce](/what-is-a-hypercar) study, or explore our [best classic cars to invest in guide for portfolio balance](/best-classic-cars-to-invest-in). You can also [browse our superbikes collection showroom](#showroom) or review our [keyword research and performance taxonomy](/keyword-research).'
         ],
         callout: {
           quote:
@@ -449,7 +588,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         subheading: 'The 1,200 Horsepower-per-Ton Reality of Two Wheels',
         body: [
           'How does the power-to-weight ratio of luxury motorcycles compare to million-dollar hypercars? A production track superbike like the Ducati Panigale V4 SP2 generates 215.5 horsepower against a dry weight of just 173 kg (381 lbs), creating a power-to-weight ratio exceeding 1,200 horsepower per ton. By contrast, a 1,600 hp Bugatti Chiron weighing 1,995 kg delivers approximately 800 hp per ton.',
-          'This mechanical reality enables luxury motorcycles to accelerate from 0 to 100 km/h in 2.7 seconds for a tiny fraction of hypercar acquisition pricing, making them an indispensable component of any discerning collector’s garage.'
+          'This mechanical reality enables luxury motorcycles to accelerate from 0 to 100 km/h in 2.7 seconds for a tiny fraction of hypercar acquisition pricing, regularly documented on the grueling Mountain Course at the [Isle of Man TT Races official timing and telemetry archive](https://www.iomttraces.com).'
         ]
       },
       {
@@ -457,8 +596,8 @@ export const ARTICLES_DATA: BlogArticle[] = [
         heading: 'What Aerospace Technology is Used in Modern Superbikes?',
         subheading: '6-Axis IMUs, Cornering ABS, and Carbon-Fiber Aerodynamic Winglets',
         body: [
-          'Modern luxury motorcycles feature computing power adapted directly from MotoGP racing prototypes. A six-axis Bosch Inertial Measurement Unit (IMU) monitors pitch, roll, and yaw angles in real-time, modulating slide control, wheelie mitigation, and engine brake levels 100 times per second.',
-          'Dual-profile carbon aerodynamic winglets generate up to 30 kg of front-wheel downforce at 270 km/h, preventing high-speed front-end lift and stabilizing the machine through triple-digit sweepers.'
+          'Modern luxury motorcycles feature computing power adapted directly from MotoGP racing prototypes, as audited by the [MotoGP Official World Championship telemetry](https://www.motogp.com) guidelines. A six-axis Bosch Inertial Measurement Unit (IMU) monitors pitch, roll, and yaw angles in real-time, modulating slide control, wheelie mitigation, and engine brake levels 100 times per second.',
+          'Dual-profile carbon aerodynamic winglets developed from the [Ducati Corse Racing Division Desmosedici Stradale documentation](https://www.ducati.com) generate up to 30 kg of front-wheel downforce at 270 km/h, preventing high-speed front-end lift and stabilizing the machine through triple-digit sweepers.'
         ]
       },
       {
@@ -482,8 +621,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         priceEstimate: '$40,500 USD',
         rating: 5,
         highlight: 'Supercar-slaying power-to-weight ratio in a lightweight package.',
-        image:
-          'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80'
+        image: '/cars/ducati-v4-sp2.jpg'
       },
       {
         name: 'Kawasaki Ninja H2R Track Edition',
@@ -495,8 +633,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         priceEstimate: '$57,500 USD',
         rating: 5,
         highlight: 'Over 310 horsepower from a centrifugal supercharger.',
-        image:
-          'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=800&q=80'
+        image: '/cars/kawasaki-h2r.jpg'
       },
       {
         name: 'Bimota Tesi H2',
@@ -508,8 +645,7 @@ export const ARTICLES_DATA: BlogArticle[] = [
         priceEstimate: '$72,000 USD',
         rating: 4.9,
         highlight: 'Separates steering from braking forces via hub-center geometry.',
-        image:
-          'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80'
+        image: '/cars/bimota-tesi.jpg'
       }
     ],
     prosAndCons: {
@@ -547,6 +683,80 @@ export const ARTICLES_DATA: BlogArticle[] = [
     relatedSlugs: [
       'what-is-a-hypercar',
       'best-classic-cars-to-invest-in'
+    ],
+    inwardLinks: [
+      {
+        title: 'Hypercars vs Supercars Apex Benchmark',
+        path: '/what-is-a-hypercar',
+        anchorText: 'what is a hypercar to compare aerodynamic downforce',
+        context: 'Comparison of 300+ mph land speed physics against 1,200 hp/ton superbikes',
+        badge: 'Cornerstone Guide'
+      },
+      {
+        title: 'Blue-Chip Classic Car Investment Guide',
+        path: '/best-classic-cars-to-invest-in',
+        anchorText: 'best classic cars to invest in guide for portfolio balance',
+        context: 'Balancing rare two-wheel homologation investments with four-wheel icons',
+        badge: 'Cornerstone Guide'
+      },
+      {
+        title: 'Superbikes Showroom Collection',
+        path: '#showroom',
+        anchorText: 'browse our superbikes collection showroom',
+        context: 'Direct access to the luxury motorcycle and superbike showroom collection',
+        badge: 'Showroom'
+      },
+      {
+        title: 'Assemble Superbike in Dream Garage Vault',
+        path: '#dream-garage',
+        anchorText: 'assemble your ultimate superbike in the Dream Garage Vault',
+        context: 'Fill the dedicated 6th slot with the Panigale V4 SP2, Ninja H2R, or Tesi H2',
+        badge: 'Interactive Tool'
+      },
+      {
+        title: 'Superbike Taxonomy & Keyword Architecture',
+        path: '/keyword-research',
+        anchorText: 'keyword research and performance taxonomy',
+        context: 'Keyword volume, SERP features, and user search queries analysis',
+        badge: 'SEO Intelligence'
+      }
+    ],
+    outboundLinks: [
+      {
+        title: 'FIM WorldSBK Technical Regulations',
+        url: 'https://www.fim-moto.com',
+        publisher: 'Fédération Internationale de Motocyclisme (FIM)',
+        description: 'Official governing body technical rulebook for production-based Superbike World Championship homologation.',
+        type: 'regulatory'
+      },
+      {
+        title: 'Isle of Man TT Official Timing & Telemetry Archive',
+        url: 'https://www.iomttraces.com',
+        publisher: 'Isle of Man TT Races',
+        description: 'Official 37.73-mile Mountain Course sector telemetry, lap speed averages, and historical records.',
+        type: 'motorsport'
+      },
+      {
+        title: 'MotoGP World Championship Telemetry Standards',
+        url: 'https://www.motogp.com',
+        publisher: 'Dorna Sports / FIM',
+        description: 'Premier motorcycle racing prototype sensor telemetry, unified Magneti Marelli ECU rules, and aero wing data.',
+        type: 'telemetry'
+      },
+      {
+        title: 'Ducati Corse Racing Division Desmosedici Documentation',
+        url: 'https://www.ducati.com',
+        publisher: 'Ducati Motor Holding S.p.A.',
+        description: 'Desmodromic valve actuation, counter-rotating crankshafts, and carbon aerodynamic winglet development whitepapers.',
+        type: 'manufacturer'
+      },
+      {
+        title: 'Bimota Historic Tesi Chassis Engineering Archive',
+        url: 'https://bimota.it',
+        publisher: 'Bimota S.p.A.',
+        description: 'Pierluigi Marconi hub-center steering engineering patents separating directional steering from braking compression.',
+        type: 'manufacturer'
+      }
     ]
   }
 ];

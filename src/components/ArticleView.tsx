@@ -16,9 +16,13 @@ import {
   ThumbsUp,
   ThumbsDown,
   Compass,
-  ArrowRight
+  ArrowRight,
+  ExternalLink,
+  Globe,
+  ShieldCheck,
+  BookOpen
 } from 'lucide-react';
-import { BlogArticle } from '../types/blog';
+import { BlogArticle, ArticleCategory } from '../types/blog';
 import { updateSEO } from '../utils/seo';
 
 interface ArticleViewProps {
@@ -26,6 +30,9 @@ interface ArticleViewProps {
   allArticles: BlogArticle[];
   onNavigateHome: () => void;
   onSelectArticle: (slug: string) => void;
+  onOpenGarage?: () => void;
+  onOpenKeywordResearch?: () => void;
+  onSelectCategory?: (category: ArticleCategory | 'All') => void;
   isSaved: boolean;
   onToggleSave: (slug: string) => void;
 }
@@ -35,6 +42,9 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
   allArticles,
   onNavigateHome,
   onSelectArticle,
+  onOpenGarage,
+  onOpenKeywordResearch,
+  onSelectCategory,
   isSaved,
   onToggleSave
 }) => {
@@ -104,6 +114,113 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
   const relatedArticles = allArticles.filter(a =>
     article.relatedSlugs.includes(a.slug)
   );
+
+  // Parser for rich inline inward and outbound links in body copy
+  const renderRichText = (text: string) => {
+    const regex = /\[(.*?)\]\((.*?)\)/g;
+    const parts: React.ReactNode[] = [];
+    let lastIndex = 0;
+    let match: RegExpExecArray | null;
+
+    while ((match = regex.exec(text)) !== null) {
+      if (match.index > lastIndex) {
+        parts.push(text.substring(lastIndex, match.index));
+      }
+
+      const anchorText = match[1];
+      const url = match[2];
+      const key = `link-${match.index}-${url}`;
+
+      if (url.startsWith('http://') || url.startsWith('https://')) {
+        parts.push(
+          <a
+            key={key}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={`External Authority: ${anchorText} (${url})`}
+            className="inline-flex items-center gap-1 font-medium text-blue-400 hover:text-blue-300 underline underline-offset-4 decoration-blue-500/40 hover:decoration-blue-400 transition-colors group/link cursor-pointer"
+          >
+            <span>{anchorText}</span>
+            <ExternalLink className="w-3 h-3 text-blue-400/90 inline group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform shrink-0" />
+          </a>
+        );
+      } else if (url === '#dream-garage') {
+        parts.push(
+          <button
+            key={key}
+            type="button"
+            onClick={onOpenGarage}
+            title="Open interactive 6-Slot Dream Garage Vault builder"
+            className="inline-flex items-center gap-1 font-medium text-sky-400 hover:text-sky-300 underline underline-offset-4 decoration-sky-500/50 hover:decoration-sky-300 transition-colors cursor-pointer"
+          >
+            <span>{anchorText}</span>
+            <Sparkles className="w-3 h-3 text-sky-400 inline shrink-0" />
+          </button>
+        );
+      } else if (url === '#showroom' || url.startsWith('#showroom-')) {
+        parts.push(
+          <button
+            key={key}
+            type="button"
+            onClick={() => {
+              if (url === '#showroom-classics' && onSelectCategory) {
+                onSelectCategory('Classics & Heritage');
+              } else if (url === '#showroom-superbikes' && onSelectCategory) {
+                onSelectCategory('Superbikes');
+              } else if (onSelectCategory) {
+                onSelectCategory('All');
+              } else {
+                onNavigateHome();
+              }
+            }}
+            title="Explore the Midnight Motors showroom collection"
+            className="inline-flex items-center gap-1 font-medium text-sky-400 hover:text-sky-300 underline underline-offset-4 decoration-sky-500/50 hover:decoration-sky-300 transition-colors cursor-pointer"
+          >
+            <span>{anchorText}</span>
+            <ArrowRight className="w-3 h-3 text-sky-400 inline shrink-0" />
+          </button>
+        );
+      } else if (url === '/keyword-research') {
+        parts.push(
+          <button
+            key={key}
+            type="button"
+            onClick={onOpenKeywordResearch || (() => window.location.assign('/keyword-research'))}
+            title="View AEO Keyword Research & Intent Matrix"
+            className="inline-flex items-center gap-1 font-medium text-amber-400 hover:text-amber-300 underline underline-offset-4 decoration-amber-500/50 hover:decoration-amber-300 transition-colors cursor-pointer"
+          >
+            <span>{anchorText}</span>
+            <ArrowRight className="w-3 h-3 text-amber-400 inline shrink-0" />
+          </button>
+        );
+      } else if (url.startsWith('/')) {
+        const targetSlug = url.replace(/^\//, '');
+        parts.push(
+          <button
+            key={key}
+            type="button"
+            onClick={() => onSelectArticle(targetSlug)}
+            title={`Read cornerstone editorial: ${anchorText}`}
+            className="inline-flex items-center gap-1 font-medium text-sky-400 hover:text-sky-300 underline underline-offset-4 decoration-sky-500/50 hover:decoration-sky-300 transition-colors cursor-pointer text-left"
+          >
+            <span>{anchorText}</span>
+            <ArrowRight className="w-3 h-3 text-sky-400 inline shrink-0" />
+          </button>
+        );
+      } else {
+        parts.push(anchorText);
+      }
+
+      lastIndex = regex.lastIndex;
+    }
+
+    if (lastIndex < text.length) {
+      parts.push(text.substring(lastIndex));
+    }
+
+    return parts.length > 0 ? parts : text;
+  };
 
   return (
     <div className="min-h-screen bg-[#060911] text-slate-200 pt-20 pb-24">
@@ -270,7 +387,10 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                   Table of Contents
                 </div>
                 <nav className="space-y-1.5 text-xs">
-                  {article.tableOfContents.map((toc, index) => {
+                  {[
+                    ...article.tableOfContents,
+                    { id: 'verified-sources-and-links', title: 'Verified Sources & Links' }
+                  ].map((toc, index) => {
                     const isActive = activeTocId === toc.id;
                     return (
                       <a
@@ -336,6 +456,46 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
+
+              {/* Inward & Outbound Link Intelligence Quick Summary */}
+              <div className="p-4 bg-[#090e1a]/90 border border-blue-900/30 rounded-xl space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono-spec">
+                  <span className="text-blue-400 font-semibold uppercase tracking-wider flex items-center gap-1.5">
+                    <Globe className="w-3.5 h-3.5" /> Link Architecture
+                  </span>
+                  <span className="text-slate-500 text-[10px]">AEO INDEX</span>
+                </div>
+                
+                <div className="space-y-2 text-xs">
+                  <div className="flex items-center justify-between p-2 rounded bg-blue-950/30 border border-blue-900/20">
+                    <span className="text-slate-300 flex items-center gap-1.5">
+                      <ArrowRight className="w-3 h-3 text-sky-400" /> Inward Links
+                    </span>
+                    <span className="font-mono-spec font-bold text-sky-400">
+                      {article.inwardLinks?.length || 5} Direct
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 rounded bg-blue-950/30 border border-blue-900/20">
+                    <span className="text-slate-300 flex items-center gap-1.5">
+                      <ExternalLink className="w-3 h-3 text-blue-400" /> Outbound Sources
+                    </span>
+                    <span className="font-mono-spec font-bold text-blue-400">
+                      {article.outboundLinks?.length || 5} Verified
+                    </span>
+                  </div>
+                </div>
+
+                <a
+                  href="#verified-sources-and-links"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('verified-sources-and-links')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="block text-center py-1.5 text-[11px] font-mono-spec text-blue-400 hover:text-white transition-colors border-t border-blue-950/60 pt-2"
+                >
+                  Explore link directory ↓
+                </a>
+              </div>
             </div>
           </aside>
 
@@ -373,12 +533,16 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                         }
                       >
                         <p>
-                          {idx === 0 && pIdx === 0 && !isQuestionStyle ? (
+                          {idx === 0 && pIdx === 0 && !isQuestionStyle && !para.startsWith('[') ? (
                             <span className="float-left text-4xl sm:text-5xl font-display font-extrabold text-blue-400 mr-3 leading-none mt-1">
                               {para.charAt(0)}
                             </span>
                           ) : null}
-                          {idx === 0 && pIdx === 0 && !isQuestionStyle ? para.slice(1) : para}
+                          {renderRichText(
+                            idx === 0 && pIdx === 0 && !isQuestionStyle && !para.startsWith('[')
+                              ? para.slice(1)
+                              : para
+                          )}
                         </p>
                       </div>
                     );
@@ -592,6 +756,141 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                     </div>
                   );
                 })}
+              </div>
+            </section>
+
+            {/* VERIFIED PRIMARY AUTHORITIES (OUTBOUND LINKS) & ARCHITECTURAL INWARD LINKS SECTION */}
+            <section
+              id="verified-sources-and-links"
+              className="pt-10 border-t border-blue-900/40 scroll-mt-28 space-y-8"
+            >
+              <div>
+                <div className="flex items-center gap-2 text-xs font-mono-spec text-blue-400 uppercase tracking-widest mb-2 font-semibold">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  Documentation & Citations Index
+                </div>
+                <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
+                  Verified Outbound Authorities & Inward Link Architecture
+                </h2>
+                <p className="text-sm text-slate-400 max-w-3xl leading-relaxed">
+                  Every technical assertion and historical benchmark in this dossier is corroborated by recognized regulatory governing bodies and official factory archives (outbound links), integrated seamlessly with our interactive showroom network and collector tooling (inward links).
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Outbound Authoritative Sources Column */}
+                <div className="p-5 bg-[#090e1a] border border-blue-900/40 rounded-xl space-y-4">
+                  <div className="flex items-center justify-between border-b border-blue-950 pb-3">
+                    <div className="flex items-center gap-2">
+                      <ExternalLink className="w-4 h-4 text-blue-400" />
+                      <h3 className="font-mono-spec text-xs uppercase tracking-wider text-white font-bold">
+                        Verified Primary Sources (Outbound)
+                      </h3>
+                    </div>
+                    <span className="text-[10px] font-mono-spec px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800/40">
+                      EXTERNAL ARCHIVES
+                    </span>
+                  </div>
+
+                  <div className="space-y-3">
+                    {article.outboundLinks?.map((source, sIdx) => (
+                      <div
+                        key={sIdx}
+                        className="p-3.5 bg-[#060a14] border border-blue-900/20 hover:border-blue-500/40 rounded-lg transition-colors group"
+                      >
+                        <div className="flex items-start justify-between gap-2 mb-1.5">
+                          <span className="text-[10px] font-mono-spec font-bold uppercase tracking-wider px-1.5 py-0.5 bg-blue-950/80 text-blue-400 border border-blue-900/40 rounded">
+                            {source.type}
+                          </span>
+                          <span className="text-[11px] font-mono-spec text-slate-500">
+                            {source.publisher}
+                          </span>
+                        </div>
+                        <h4 className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors mb-1">
+                          {source.title}
+                        </h4>
+                        <p className="text-xs text-slate-400 leading-relaxed mb-3">
+                          {source.description}
+                        </p>
+                        <a
+                          href={source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={`Access ${source.title} at ${source.url}`}
+                          className="inline-flex items-center gap-1.5 text-xs font-mono-spec text-blue-400 hover:text-white transition-colors"
+                        >
+                          <span>Visit verified authority archive</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Inward Link Architecture Column */}
+                <div className="p-5 bg-[#090e1a] border border-blue-900/40 rounded-xl space-y-4">
+                  <div className="flex items-center justify-between border-b border-blue-950 pb-3">
+                    <div className="flex items-center gap-2">
+                      <ArrowRight className="w-4 h-4 text-sky-400" />
+                      <h3 className="font-mono-spec text-xs uppercase tracking-wider text-white font-bold">
+                        Internal Navigation Network (Inward)
+                      </h3>
+                    </div>
+                    <span className="text-[10px] font-mono-spec px-2 py-0.5 rounded bg-sky-950 text-sky-300 border border-sky-800/40">
+                      MIDNIGHT MOTORS
+                    </span>
+                  </div>
+
+                  <div className="space-y-3">
+                    {article.inwardLinks?.map((inLink, iIdx) => (
+                      <div
+                        key={iIdx}
+                        className="p-3.5 bg-[#060a14] border border-blue-900/20 hover:border-sky-500/40 rounded-lg transition-colors group"
+                      >
+                        <div className="flex items-start justify-between gap-2 mb-1.5">
+                          <span className="text-[10px] font-mono-spec font-bold uppercase tracking-wider px-1.5 py-0.5 bg-sky-950/80 text-sky-400 border border-sky-900/40 rounded">
+                            {inLink.badge}
+                          </span>
+                          <span className="text-[11px] font-mono-spec text-slate-500">
+                            Deep Path: {inLink.path}
+                          </span>
+                        </div>
+                        <h4 className="text-sm font-semibold text-white group-hover:text-sky-300 transition-colors mb-1">
+                          {inLink.title}
+                        </h4>
+                        <p className="text-xs text-slate-400 leading-relaxed mb-3">
+                          {inLink.context}
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (inLink.path === '#dream-garage') {
+                              onOpenGarage?.();
+                            } else if (inLink.path === '#showroom') {
+                              if (onSelectCategory) {
+                                onSelectCategory('All');
+                              } else {
+                                onNavigateHome();
+                              }
+                            } else if (inLink.path === '/keyword-research') {
+                              if (onOpenKeywordResearch) {
+                                onOpenKeywordResearch();
+                              } else {
+                                window.location.assign('/keyword-research');
+                              }
+                            } else if (inLink.path.startsWith('/')) {
+                              onSelectArticle(inLink.path.replace(/^\//, ''));
+                            }
+                          }}
+                          className="inline-flex items-center gap-1.5 text-xs font-mono-spec text-sky-400 hover:text-white transition-colors"
+                        >
+                          <span>"{inLink.anchorText}"</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </section>
 

@@ -11,7 +11,10 @@ import {
   Sparkles,
   ChevronRight,
   Car,
-  Bike
+  Bike,
+  ExternalLink,
+  Globe,
+  ShieldCheck
 } from 'lucide-react';
 import { ARTICLES_DATA } from './data/articles';
 import { BlogArticle, ArticleCategory } from './types/blog';
@@ -214,6 +217,12 @@ export default function App() {
           allArticles={ARTICLES_DATA}
           onNavigateHome={handleNavigateHome}
           onSelectArticle={handleSelectArticle}
+          onOpenGarage={() => setIsGarageOpen(true)}
+          onOpenKeywordResearch={handleSelectKeywordResearch}
+          onSelectCategory={cat => {
+            setSelectedCategory(cat as any);
+            handleNavigateHome();
+          }}
           isSaved={savedSlugs.includes(currentArticle.slug)}
           onToggleSave={handleToggleSave}
         />
@@ -629,6 +638,279 @@ export default function App() {
                   onToggleSave={handleCardToggleSave}
                 />
               ))}
+            </div>
+          </section>
+
+          {/* COMPREHENSIVE LINK ARCHITECTURE: INWARD DEEP LINKS & OUTBOUND CITATIONS */}
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-t border-blue-900/40">
+            <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div>
+                <div className="flex items-center gap-2 text-xs font-mono-spec text-blue-400 uppercase tracking-widest font-semibold mb-1">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <span>Navigational Infrastructure & External Trust</span>
+                </div>
+                <h2 className="font-display text-2xl sm:text-3xl font-bold text-white">
+                  Inward Navigational Network & Outbound Authority Archive
+                </h2>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-400 max-w-md">
+                Midnight Motors combines rigorous internal cross-linking for deep discovery with verified external primary citations across global governing bodies.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Left Column: Internal Navigational Ecosystem (Inward Deep Links) */}
+              <div className="p-6 bg-[#080d1a] border border-blue-900/30 rounded-2xl space-y-4">
+                <div className="flex items-center justify-between border-b border-blue-950 pb-3">
+                  <div className="flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4 text-sky-400" />
+                    <h3 className="font-mono-spec text-xs uppercase tracking-wider text-white font-bold">
+                      Inward Navigational Ecosystem (Internal Deep Links)
+                    </h3>
+                  </div>
+                  <span className="text-[10px] font-mono-spec px-2 py-0.5 rounded bg-sky-950 text-sky-300 border border-sky-800/40 font-bold">
+                    INTERNAL DOMAIN
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <button
+                    onClick={() => handleSelectArticle('what-is-a-hypercar')}
+                    className="p-3 bg-[#0a1122] hover:bg-blue-950/40 border border-blue-900/30 hover:border-blue-500/50 rounded-xl text-left transition-colors group"
+                  >
+                    <span className="text-[10px] font-mono-spec text-blue-400 uppercase font-bold block mb-1">
+                      CORNERSTONE DOSSIER
+                    </span>
+                    <h4 className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors mb-1">
+                      What is a Hypercar?
+                    </h4>
+                    <span className="text-xs text-sky-400 font-mono-spec flex items-center gap-1">
+                      Read what makes a hypercar different →
+                    </span>
+                  </button>
+
+                  <button
+                    onClick={() => handleSelectArticle('best-classic-cars-to-invest-in')}
+                    className="p-3 bg-[#0a1122] hover:bg-blue-950/40 border border-blue-900/30 hover:border-blue-500/50 rounded-xl text-left transition-colors group"
+                  >
+                    <span className="text-[10px] font-mono-spec text-blue-400 uppercase font-bold block mb-1">
+                      INVESTMENT BENCHMARK
+                    </span>
+                    <h4 className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors mb-1">
+                      Best Classic Cars to Invest In
+                    </h4>
+                    <span className="text-xs text-sky-400 font-mono-spec flex items-center gap-1">
+                      Explore the best classic cars to invest in guide →
+                    </span>
+                  </button>
+
+                  <button
+                    onClick={() => handleSelectArticle('luxury-motorcycles')}
+                    className="p-3 bg-[#0a1122] hover:bg-blue-950/40 border border-blue-900/30 hover:border-blue-500/50 rounded-xl text-left transition-colors group"
+                  >
+                    <span className="text-[10px] font-mono-spec text-blue-400 uppercase font-bold block mb-1">
+                      TRACK & VELOCITY
+                    </span>
+                    <h4 className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors mb-1">
+                      Luxury Motorcycles Showcase
+                    </h4>
+                    <span className="text-xs text-sky-400 font-mono-spec flex items-center gap-1">
+                      Discover our luxury motorcycles showcase →
+                    </span>
+                  </button>
+
+                  <button
+                    onClick={() => setIsGarageOpen(true)}
+                    className="p-3 bg-[#0a1122] hover:bg-blue-950/40 border border-blue-900/30 hover:border-sky-500/50 rounded-xl text-left transition-colors group"
+                  >
+                    <span className="text-[10px] font-mono-spec text-sky-400 uppercase font-bold block mb-1">
+                      INTERACTIVE BUILDER
+                    </span>
+                    <h4 className="text-sm font-semibold text-white group-hover:text-sky-300 transition-colors mb-1">
+                      6-Slot Dream Garage Vault
+                    </h4>
+                    <span className="text-xs text-sky-400 font-mono-spec flex items-center gap-1">
+                      Launch interactive vault builder →
+                    </span>
+                  </button>
+                </div>
+
+                <div className="pt-2 flex flex-wrap gap-2 text-xs">
+                  <button
+                    onClick={() => setSelectedCategory('All')}
+                    className="px-2.5 py-1 bg-blue-950/60 hover:bg-blue-900/60 border border-blue-800/40 rounded text-slate-300 hover:text-white transition-colors"
+                  >
+                    All Showroom Stock
+                  </button>
+                  <button
+                    onClick={() => setSelectedCategory('Hypercars')}
+                    className="px-2.5 py-1 bg-blue-950/60 hover:bg-blue-900/60 border border-blue-800/40 rounded text-slate-300 hover:text-white transition-colors"
+                  >
+                    Hypercars Collection
+                  </button>
+                  <button
+                    onClick={() => setSelectedCategory('Classics & Heritage')}
+                    className="px-2.5 py-1 bg-blue-950/60 hover:bg-blue-900/60 border border-blue-800/40 rounded text-slate-300 hover:text-white transition-colors"
+                  >
+                    Vintage & Heritage
+                  </button>
+                  <button
+                    onClick={() => setSelectedCategory('Superbikes')}
+                    className="px-2.5 py-1 bg-blue-950/60 hover:bg-blue-900/60 border border-blue-800/40 rounded text-slate-300 hover:text-white transition-colors"
+                  >
+                    Superbikes Sanctuary
+                  </button>
+                  <button
+                    onClick={handleSelectKeywordResearch}
+                    className="px-2.5 py-1 bg-amber-950/60 hover:bg-amber-900/60 border border-amber-800/40 rounded text-amber-300 hover:text-white transition-colors font-mono-spec"
+                  >
+                    AEO Keyword Matrix
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column: Outbound Authorities & Official Primary Sources */}
+              <div className="p-6 bg-[#080d1a] border border-blue-900/30 rounded-2xl space-y-4">
+                <div className="flex items-center justify-between border-b border-blue-950 pb-3">
+                  <div className="flex items-center gap-2">
+                    <ExternalLink className="w-4 h-4 text-blue-400" />
+                    <h3 className="font-mono-spec text-xs uppercase tracking-wider text-white font-bold">
+                      Verified Global Authorities (Outbound Primary Sources)
+                    </h3>
+                  </div>
+                  <span className="text-[10px] font-mono-spec px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800/40 font-bold">
+                    OFFICIAL ARCHIVES
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <a
+                    href="https://www.fia.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-[#0a1122] hover:bg-blue-950/40 border border-blue-900/30 hover:border-blue-500/50 rounded-xl text-left transition-colors group block"
+                    title="Fédération Internationale de l'Automobile Technical Regulations"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[10px] font-mono-spec text-blue-400 uppercase font-bold">
+                        REGULATORY
+                      </span>
+                      <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                    </div>
+                    <h4 className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors mb-0.5">
+                      FIA World Endurance
+                    </h4>
+                    <p className="text-[11px] text-slate-400 line-clamp-1">
+                      LMH Hypercar technical rulebooks
+                    </p>
+                  </a>
+
+                  <a
+                    href="https://www.guinnessworldrecords.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-[#0a1122] hover:bg-blue-950/40 border border-blue-900/30 hover:border-blue-500/50 rounded-xl text-left transition-colors group block"
+                    title="Guinness World Records Production Car Speed Standards"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[10px] font-mono-spec text-blue-400 uppercase font-bold">
+                        TELEMETRY
+                      </span>
+                      <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                    </div>
+                    <h4 className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors mb-0.5">
+                      Guinness World Records
+                    </h4>
+                    <p className="text-[11px] text-slate-400 line-clamp-1">
+                      Production land speed certification
+                    </p>
+                  </a>
+
+                  <a
+                    href="https://www.hagerty.com/valuation-tools"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-[#0a1122] hover:bg-blue-950/40 border border-blue-900/30 hover:border-blue-500/50 rounded-xl text-left transition-colors group block"
+                    title="Hagerty Classic Car Price Guide & Blue Chip Index"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[10px] font-mono-spec text-blue-400 uppercase font-bold">
+                        AUCTION INDEX
+                      </span>
+                      <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                    </div>
+                    <h4 className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors mb-0.5">
+                      Hagerty Valuation Tools
+                    </h4>
+                    <p className="text-[11px] text-slate-400 line-clamp-1">
+                      Blue-chip historic market data
+                    </p>
+                  </a>
+
+                  <a
+                    href="https://rmsothebys.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-[#0a1122] hover:bg-blue-950/40 border border-blue-900/30 hover:border-blue-500/50 rounded-xl text-left transition-colors group block"
+                    title="RM Sotheby's Historic Auction Provenance Archive"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[10px] font-mono-spec text-blue-400 uppercase font-bold">
+                        PROVENANCE
+                      </span>
+                      <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                    </div>
+                    <h4 className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors mb-0.5">
+                      RM Sotheby’s Archive
+                    </h4>
+                    <p className="text-[11px] text-slate-400 line-clamp-1">
+                      Verified historical chassis records
+                    </p>
+                  </a>
+
+                  <a
+                    href="https://www.bugatti.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-[#0a1122] hover:bg-blue-950/40 border border-blue-900/30 hover:border-blue-500/50 rounded-xl text-left transition-colors group block"
+                    title="Bugatti Molsheim Official 300+ MPH Engineering Whitepaper"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[10px] font-mono-spec text-blue-400 uppercase font-bold">
+                        MANUFACTURER
+                      </span>
+                      <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                    </div>
+                    <h4 className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors mb-0.5">
+                      Bugatti Molsheim Lab
+                    </h4>
+                    <p className="text-[11px] text-slate-400 line-clamp-1">
+                      W16 304.77 mph longtail telemetry
+                    </p>
+                  </a>
+
+                  <a
+                    href="https://www.fim-moto.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-[#0a1122] hover:bg-blue-950/40 border border-blue-900/30 hover:border-blue-500/50 rounded-xl text-left transition-colors group block"
+                    title="FIM WorldSBK Regulations"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[10px] font-mono-spec text-blue-400 uppercase font-bold">
+                        MOTORSPORT
+                      </span>
+                      <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                    </div>
+                    <h4 className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors mb-0.5">
+                      FIM World Superbike
+                    </h4>
+                    <p className="text-[11px] text-slate-400 line-clamp-1">
+                      1,200 hp/ton homologation rules
+                    </p>
+                  </a>
+                </div>
+              </div>
             </div>
           </section>
 
