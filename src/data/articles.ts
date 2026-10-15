@@ -139,17 +139,17 @@ export const ARTICLES_DATA: BlogArticle[] = [
           'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80'
       },
       {
-        name: 'Pagani Utopia Gated Manual',
-        badge: 'Analog V12 Masterpiece',
-        category: 'Hypercar',
-        specs: '6.0L Mercedes-AMG Twin-Turbo V12 · 852 HP · 1,280 kg',
+        name: 'McLaren 720S Performance',
+        badge: 'Track Weapon Benchmark',
+        category: 'Hypercar / Supercar Benchmark',
+        specs: '4.0L Twin-Turbo V8 · 710 HP · 1,283 kg Carbon Tub',
         description:
-          'For the purist collector who values exposed titanium linkages, analog dials, and a 7-speed gated manual.',
-        priceEstimate: '$2,500,000 USD',
-        rating: 5,
-        highlight: 'Pure mechanical 7-speed manual gearbox with exposed linkage.',
+          'Proactive Chassis Control II with Monocage II carbon-fiber structure delivering hypercar-rivalling lap telemetry.',
+        priceEstimate: '$310,000 – $380,000 USD',
+        rating: 4.9,
+        highlight: 'Benchmark hypercar vs supercar power-to-weight ratio.',
         image:
-          'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80'
+          'https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=800&q=80'
       }
     ],
     prosAndCons: {
@@ -293,25 +293,25 @@ export const ARTICLES_DATA: BlogArticle[] = [
     ],
     productRecommendations: [
       {
-        name: 'Ferrari 275 GTB/4 Scaglietti',
-        badge: 'Blue-Chip Classic',
+        name: '1962 Ferrari 250 GTO (Homologato)',
+        badge: 'Blue-Chip Holy Grail',
         category: 'Exotic Classic Car',
-        specs: '3.3L Quad-Cam Colombo V12 · 300 HP · 6 Weber Carbs',
+        specs: '3.0L Colombo V12 · 296 HP · Scaglietti Aluminum',
         description:
-          'Features four overhead camshafts and Pininfarina styling, offering pure 1960s Colombo V12 investment potential.',
-        priceEstimate: '$3,200,000 – $4,000,000 USD',
+          'Only 36 produced; the undisputed gold standard of historic collector cars and premier asset appreciation.',
+        priceEstimate: '$50,000,000 – $70,000,000 USD',
         rating: 5,
-        highlight: 'Four-cam Colombo V12 with transaxle independent rear suspension.',
+        highlight: 'Triple FIA GT World Championship provenance and landmark auction benchmark.',
         image:
           'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80'
       },
       {
-        name: 'Ferrari F40 (Non-Cat / Non-Adjust)',
+        name: 'Ferrari F40 (Non-Cat Purist)',
         badge: 'Analog Icon Investment',
         category: 'Classic Supercar',
         specs: '2.9L Twin-Turbo V8 · 471 HP · 1,100 kg Dry',
         description:
-          'The rawest, most visceral road car ever produced in Maranello with visible carbon weave.',
+          'The rawest, most visceral road car ever produced in Maranello with visible carbon-kevlar weave.',
         priceEstimate: '$2,800,000 – $3,500,000 USD',
         rating: 5,
         highlight: 'Final road car personally approved by Enzo Ferrari.',
@@ -319,15 +319,15 @@ export const ARTICLES_DATA: BlogArticle[] = [
           'https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&w=800&q=80'
       },
       {
-        name: 'Porsche 959 Komfort',
-        badge: 'Technological Milestone',
-        category: 'Classic Supercar',
-        specs: '2.85L Sequential Biturbo · 444 HP · PSK AWD',
+        name: '1973 Porsche 911 Carrera RS 2.7',
+        badge: 'Air-Cooled Investment Legend',
+        category: 'Classic Sports Car',
+        specs: '2.7L Air-Cooled Flat-6 · 210 HP · 960 kg Lightweight',
         description:
-          'Weissach’s Group B laboratory on wheels, offering all-weather composure and milestone historical importance.',
-        priceEstimate: '$1,900,000 – $2,400,000 USD',
+          'Weissach’s quintessential analog milestone, delivering pure air-cooled throttle response and iconic ducktail aero.',
+        priceEstimate: '$650,000 – $1,200,000 USD',
         rating: 5,
-        highlight: 'Sequential turbocharging and computer-controlled all-wheel drive.',
+        highlight: 'Benchmark appreciation index for historic air-cooled German sports cars.',
         image:
           'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80'
       }
